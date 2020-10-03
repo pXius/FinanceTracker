@@ -6,12 +6,14 @@ import java.time.format.DateTimeFormatter;
 public abstract class Transaction {
     LocalDate date;
     double transactionValue;
-    String transActionDescription;
+    String transactionDescription;
+    String transactionType;
 
-    public Transaction(int year, int month, int day, double transactionValue, String transActionDescription) {
+    public Transaction(int year, int month, int day, double transactionValue, String transactionType, String transactionDescription) {
         this.date = LocalDate.of(year, month, day);
         this.transactionValue = transactionValue;
-        this.transActionDescription = transActionDescription;
+        this.transactionDescription = transactionDescription;
+        this.transactionType = transactionType;
     }
 
     public LocalDate getDate() {
@@ -35,11 +37,19 @@ public abstract class Transaction {
         this.transactionValue = transactionValue;
     }
 
-    public String getTransActionDescription() {
-        return transActionDescription;
+    public String getTransactionDescription() {
+        return transactionDescription;
     }
 
-    public void setTransActionDescription(String transActionDescription) {
-        this.transActionDescription = transActionDescription;
+    public void setTransactionDescription(String transactionDescription) {
+        this.transactionDescription = transactionDescription;
+    }
+
+    @Override
+    public String toString() {
+        return "\tDate: " + date +
+                "\n\tAmount: " + transactionValue +
+                "\n\tDescription : " + transactionDescription +
+                "\n\tType: " + transactionType;
     }
 }
