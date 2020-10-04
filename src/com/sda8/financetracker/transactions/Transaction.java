@@ -9,8 +9,8 @@ public abstract class Transaction {
     String transactionDescription;
     String transactionType;
 
-    public Transaction(int year, int month, int day, double transactionValue, String transactionType, String transactionDescription) {
-        this.date = LocalDate.of(year, month, day);
+    public Transaction(LocalDate date, double transactionValue, String transactionType, String transactionDescription) {
+        this.date = date;
         this.transactionValue = transactionValue;
         this.transactionDescription = transactionDescription;
         this.transactionType = transactionType;
@@ -25,8 +25,8 @@ public abstract class Transaction {
     }
 
 
-    public void setDate(int year, int month, int day) {
-        this.date = LocalDate.of(year, month, day);
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public double getTransactionValue() {
