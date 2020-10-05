@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Tracker {
     private double balance;
@@ -29,10 +30,12 @@ public class Tracker {
     }
 
     public void addExpense(Expense expense) {
+        this.balance -= expense.getTransactionValue();
         expenseList.add(expense);
     }
 
     public void addIncome(Income income) {
+        this.balance += income.getTransactionValue();
         incomeList.add(income);
     }
 
@@ -64,4 +67,10 @@ public class Tracker {
         }
     }
 
+    public <T extends Transaction> List<T> mergeTransactionList(List<T> list1, List<T> list2){
+        return Stream.concat(
+                list1.stream(),
+                list2.stream())
+                .collect(Collectors.toList());
+    }
 }
