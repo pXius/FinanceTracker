@@ -6,32 +6,32 @@ public class UiText {
         System.out.println("Welcome to FinTrack!");
     }
 
-    public static String mainMenu() {
-        return """
-                Please select an option:
-                \t(1) Check Balance
-                \t(2) New Transaction
-                \t(3) Transaction History
-                \t(4) Profile
-                \t(5) Save and Exit
-                """;
+    public static void mainMenu() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1) Check Balance
+                            \t(2) New Transaction
+                            \t(3) Transaction History
+                            \t(4) Profile
+                            \t(5) Save and Exit
+                            """);
     }
 
-    public static String checkBalanceMenu() {
-        return """
-                Please select an option:
-                \t(1) <- Back to Main Menu
-                \t(2)    Save and Exit
-                """;
+    public static void checkBalanceMenu() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1) <- Back to Main Menu
+                            \t(2)    Save and Exit
+                            """);
     }
 
-    public static String newTransactionMenu() {
-        return """
+    public static void newTransactionMenu() {
+        System.out.println( """
                 Please select an option:
                 \t(1) <- Back to Main Menu
                 \t(2)    Add new Expense
                 \t(3)    Add new Income
-                """;
+                """);
     }
 
     public static void invalidInput() {
@@ -45,29 +45,28 @@ public class UiText {
         System.out.flush();
     }
 
-    public static String dateInputText() {
-        return  """
+    public static void dateInputText() {
+        System.out.println( """
                 Enter a date:
                 dd-mm-yyyy | ie. 14-06-2020
-                """;
+                """);
     }
 
-    public static String transactionDescriptionText(){
-        return  """
-                Enter a description for this transaction:
-                """;
-    }
-    public static String transactionTypeText(){
-        return  """
-                What Type of transaction is this?
-                ie. Entertainment, Transport, Medical
-                """;
+    public static void transactionDescriptionText() {
+        System.out.println( """
+                            Enter a description for this transaction:
+                            """);
     }
 
-    public static String transactionAmount(){
-        return  """
-                Enter the transaction amount: 
-                """;
+    public static void transactionTypeText() {
+        System.out.println( """
+                            What Type of transaction is this?
+                            ie. Entertainment, Transport, Medical
+                            """);
+    }
+
+    public static void transactionAmount() {
+        System.out.println("Enter the transaction amount: ");
     }
 
 }

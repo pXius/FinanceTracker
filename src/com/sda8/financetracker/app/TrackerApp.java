@@ -20,7 +20,7 @@ public class TrackerApp {
     }
 
     public void mainMenu() {
-        int selectedOption = input.numberInput(5, UiText.mainMenu());
+        int selectedOption = input.numberInput(5, UiText::mainMenu);
         switch (selectedOption) {
             case 1:
                 checkBalance();
@@ -40,7 +40,7 @@ public class TrackerApp {
     public void checkBalance() {
         UiText.clearScreen();
         trackerCore.printBalance();
-        int selectedOption = input.numberInput(2, UiText.checkBalanceMenu());
+        int selectedOption = input.numberInput(2, UiText::checkBalanceMenu);
         switch (selectedOption) {
             case 1:
                 mainMenu();
@@ -52,7 +52,7 @@ public class TrackerApp {
 
     public void newTransaction() {
         UiText.clearScreen();
-        int selectedOption = input.numberInput(3, UiText.newTransactionMenu());
+        int selectedOption = input.numberInput(3, UiText::newTransactionMenu);
         switch (selectedOption) {
             case 1 -> mainMenu();
             case 2 -> trackerCore.addExpense((Expense) generateTransaction("expense"));
@@ -65,9 +65,9 @@ public class TrackerApp {
     * Return type Expense or Income determined by parameter "expenseOrIncome".
     * */
     public Transaction generateTransaction(String expenseOrIncome) {
-        double transactionValue = input.amountInput(UiText.transactionAmount());
-        String transactionDescription = input.textInput(UiText.transactionDescriptionText());
-        String transactionType = input.textInput(UiText.transactionTypeText());
+        double transactionValue = input.amountInput(UiText::transactionAmount);
+        String transactionDescription = input.textInput(UiText::transactionDescriptionText);
+        String transactionType = input.textInput(UiText::transactionTypeText);
         LocalDate transactionDate = input.dateInput();
         if (expenseOrIncome.equals("expense")) {
             return new Expense(transactionDate, transactionValue, transactionType, transactionDescription);

@@ -13,11 +13,11 @@ public class UiInput {
      * Take a numeric input from the console between 0 and inclusive of inputOptions parameter.
      * Console request text will be based on UiTextCall parameter.
      * */
-    public int numberInput(int inputOptions, String UiTextCall) {
+    public int numberInput(int inputOptions, Runnable UiTextCall) {
         int selectedOption = 0;
         while (selectedOption == 0) {
             try {
-                System.out.println(UiTextCall);
+                UiTextCall.run();
                 selectedOption = scanner.nextInt();
                 scanner.nextLine();
                 if (selectedOption > 0 && selectedOption <= inputOptions) {
@@ -39,11 +39,11 @@ public class UiInput {
      * Retrieve and double value from console.
      * Console request text will be based on consoleRequestText parameter.
      * */
-    public double amountInput(String consoleRequestText) {
+    public double amountInput(Runnable uiTextCall) {
         double amount = 0;
         while (amount <= 0) {
             try {
-                System.out.println(consoleRequestText);
+                uiTextCall.run();
                 amount = scanner.nextDouble();
                 scanner.nextLine();
             } catch (InputMismatchException e) {
@@ -62,7 +62,7 @@ public class UiInput {
         LocalDate date = null;
         while (date == null) {
             try {
-                System.out.println(UiText.dateInputText());
+                UiText.dateInputText();
                 if (scanner.hasNextLine()) {
                     String input = scanner.nextLine();
                     date = DateTimeFormatter.ofPattern("dd-MM-yyyy").parse(input, LocalDate::from);
@@ -78,10 +78,10 @@ public class UiInput {
      * Retrieve and String value from console.
      * Console request text will be based on consoleRequestText parameter.
      * */
-    public String textInput(String consoleRequestText) {
+    public String textInput(Runnable uiTextCall) {
         String returnText = "";
         while (returnText.length() == 0) {
-            System.out.println(consoleRequestText);
+            uiTextCall.run();
             returnText = scanner.nextLine();
             if (returnText.length() == 0)
                 UiText.invalidInput();
