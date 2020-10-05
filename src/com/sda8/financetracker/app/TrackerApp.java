@@ -65,14 +65,14 @@ public class TrackerApp {
     * Return type Expense or Income determined by parameter "expenseOrIncome".
     * */
     public Transaction generateTransaction(String expenseOrIncome) {
-        double amount = input.amountInput(UiText.transactionAmount());
-        String description = input.textInput(UiText.transactionDescriptionText());
-        String type = input.textInput(UiText.transactionTypeText());
-        LocalDate date = input.dateInput();
+        double transactionValue = input.amountInput(UiText.transactionAmount());
+        String transactionDescription = input.textInput(UiText.transactionDescriptionText());
+        String transactionType = input.textInput(UiText.transactionTypeText());
+        LocalDate transactionDate = input.dateInput();
         if (expenseOrIncome.equals("expense")) {
-            return new Expense(date, amount, type, description);
+            return new Expense(transactionDate, transactionValue, transactionType, transactionDescription);
         } else {
-            return new Income(date, amount, type, description);
+            return new Income(transactionDate, transactionValue, transactionType, transactionDescription);
         }
     }
 }
