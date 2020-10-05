@@ -45,9 +45,23 @@ public class Tracker {
     }
 
     public <T extends Transaction> List<T> sortByDate(List<T> list) {
-        return  list.stream()
+        return list.stream()
                 .sorted(Comparator.comparing(T::getDate)
-                .reversed())
+                        .reversed())
                 .collect(Collectors.toList());
     }
+
+    public <T extends Transaction> List<T> sortByTransactionValue(List<T> list, boolean reversed) {
+        if (!reversed) {
+            return list.stream()
+                    .sorted(Comparator.comparing(T::getTransactionValue))
+                    .collect(Collectors.toList());
+        } else {
+            return list.stream()
+                    .sorted(Comparator.comparing(T::getTransactionValue)
+                    .reversed())
+                    .collect(Collectors.toList());
+        }
+    }
+
 }
