@@ -22,7 +22,7 @@ public class TrackerApp {
         UiText.welcome();
     }
 
-    public void run(){
+    public void run() {
         while (running) {
             mainMenu();
         }
@@ -34,7 +34,8 @@ public class TrackerApp {
             case 1 -> checkBalance();
             case 2 -> newTransaction();
             case 3 -> transactionHistory();
-            case 4 -> {}
+            case 4 -> {
+            }
             case 5 -> saveAndExit();
         }
     }
@@ -44,7 +45,8 @@ public class TrackerApp {
         trackerCore.printBalance();
         int selectedOption = input.numberInput(2, UiText::checkBalanceMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> saveAndExit();
         }
     }
@@ -53,21 +55,33 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(3, UiText::newTransactionMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> trackerCore.addExpense((Expense) generateTransaction("expense"));
             case 3 -> trackerCore.addIncome((Income) generateTransaction("income"));
         }
     }
 
-    public void transactionHistory(){
+    public void transactionHistory() {
         UiText.clearScreen();
+        int selectedOption = input.numberInput(4, UiText::transactionHistoryMenu);
+        switch (selectedOption) {
+            case 1 -> {}
+        }
+    }
 
+    public void transactionHistoryGenerator() {
+        UiText.clearScreen();
+        int selectedOption = input.numberInput(3, UiText::dateSelectionMenu);
+        switch (selectedOption) {
+            case 1 -> {}
+        }
     }
 
     /*
-    * Query User to input required information to create a income or expense transaction.
-    * Return type Expense or Income determined by parameter "expenseOrIncome".
-    * */
+     * Query User to input required information to create a income or expense transaction.
+     * Return type Expense or Income determined by parameter "expenseOrIncome".
+     * */
     public Transaction generateTransaction(String expenseOrIncome) {
         //Request all variables from console required by Expense or Income constructor.
         double transactionValue = input.amountInput(UiText::transactionAmount);
@@ -81,6 +95,11 @@ public class TrackerApp {
             return new Income(transactionDate, transactionValue, transactionType, transactionDescription);
         }
     }
+
+    public void printTransactions(){
+        //
+    }
+
 
     public void saveAndExit() {
         Storage.saveData(trackerCore);

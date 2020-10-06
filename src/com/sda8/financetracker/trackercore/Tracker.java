@@ -6,6 +6,7 @@ import com.sda8.financetracker.transactions.Transaction;
 import com.sda8.financetracker.ui.UiText;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -73,6 +74,12 @@ public class Tracker implements Serializable {
         return Stream.concat(
                 list1.stream(),
                 list2.stream())
+                .collect(Collectors.toList());
+    }
+
+    public <T extends Transaction> List<T> filterListByDate(List<T> listToFilter, LocalDate startDate, LocalDate endDate){
+        return  listToFilter.stream()
+                .filter(T -> T.getDate().compareTo(startDate) >= 0 && T.getDate().compareTo(endDate) <= 0)
                 .collect(Collectors.toList());
     }
 }

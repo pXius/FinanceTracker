@@ -91,4 +91,12 @@ public class UiText {
         System.out.printf("Your current balance is: %.2f\n", balance);
     }
 
+    public static void dateSelectionMenu() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1) <- Back to Transaction History
+                            \t(2)    Last 30 days
+                            \t(3)    Custom Period...
+                            """);
+    }
 }
