@@ -4,13 +4,14 @@ import com.sda8.financetracker.transactions.Expense;
 import com.sda8.financetracker.transactions.Income;
 import com.sda8.financetracker.transactions.Transaction;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Tracker {
+public class Tracker implements Serializable {
     private double balance;
     private ArrayList<Expense> expenseList;
     private ArrayList<Income> incomeList;
