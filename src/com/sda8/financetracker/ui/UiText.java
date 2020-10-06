@@ -27,11 +27,11 @@ public class UiText {
 
     public static void newTransactionMenu() {
         System.out.println( """
-                Please select an option:
-                \t(1) <- Back to Main Menu
-                \t(2)    Add new Expense
-                \t(3)    Add new Income
-                """);
+                            Please select an option:
+                            \t(1) <- Back to Main Menu
+                            \t(2)    Add new Expense
+                            \t(3)    Add new Income
+                            """);
     }
 
     public static void invalidInput() {
@@ -47,9 +47,9 @@ public class UiText {
 
     public static void dateInputText() {
         System.out.println( """
-                Enter a date:
-                dd-mm-yyyy | ie. 14-06-2020
-                """);
+                            Enter a date:
+                            dd-mm-yyyy | ie. 14-06-2020
+                            """);
     }
 
     public static void transactionDescriptionText() {
