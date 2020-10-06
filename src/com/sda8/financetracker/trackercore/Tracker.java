@@ -3,6 +3,7 @@ package com.sda8.financetracker.trackercore;
 import com.sda8.financetracker.transactions.Expense;
 import com.sda8.financetracker.transactions.Income;
 import com.sda8.financetracker.transactions.Transaction;
+import com.sda8.financetracker.ui.UiText;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,8 +19,8 @@ public class Tracker implements Serializable {
 
     public Tracker() {
         this.balance = 0;
-        expenseList = new ArrayList<>();
-        incomeList = new ArrayList<>();
+        this.expenseList = new ArrayList<>();
+        this.incomeList = new ArrayList<>();
     }
 
     public double getBalance() {
@@ -27,7 +28,7 @@ public class Tracker implements Serializable {
     }
 
     public void printBalance() {
-        System.out.println("Your Balance is: " + this.balance + "\n");
+        UiText.balanceText(this.balance);
     }
 
     public void addExpense(Expense expense) {
@@ -41,11 +42,11 @@ public class Tracker implements Serializable {
     }
 
     public ArrayList<Expense> getExpenseList() {
-        return expenseList;
+        return this.expenseList;
     }
 
     public ArrayList<Income> getIncomeList() {
-        return incomeList;
+        return this.incomeList;
     }
 
     public <T extends Transaction> List<T> sortByDate(List<T> list) {
@@ -63,12 +64,12 @@ public class Tracker implements Serializable {
         } else {
             return list.stream()
                     .sorted(Comparator.comparing(T::getTransactionValue)
-                    .reversed())
+                            .reversed())
                     .collect(Collectors.toList());
         }
     }
 
-    public <T extends Transaction> List<T> mergeTransactionList(List<T> list1, List<T> list2){
+    public <T extends Transaction> List<T> mergeTransactionList(List<T> list1, List<T> list2) {
         return Stream.concat(
                 list1.stream(),
                 list2.stream())

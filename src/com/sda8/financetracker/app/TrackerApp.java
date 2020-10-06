@@ -61,6 +61,7 @@ public class TrackerApp {
 
     public void transactionHistory(){
         UiText.clearScreen();
+
     }
 
     /*

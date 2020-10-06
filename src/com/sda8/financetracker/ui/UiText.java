@@ -3,7 +3,15 @@ package com.sda8.financetracker.ui;
 public class UiText {
 
     public static void welcome() {
-        System.out.println("Welcome to FinTrack!");
+        System.out.println("""
+                
+                ███████╗██╗███╗   ██╗████████╗██████╗  █████╗  ██████╗██╗  ██╗
+                ██╔════╝██║████╗  ██║╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
+                █████╗  ██║██╔██╗ ██║   ██║   ██████╔╝███████║██║     █████╔╝\s
+                ██╔══╝  ██║██║╚██╗██║   ██║   ██╔══██╗██╔══██║██║     ██╔═██╗\s
+                ██║     ██║██║ ╚████║   ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗
+                ╚═╝     ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                """);
     }
 
     public static void mainMenu() {
@@ -31,6 +39,16 @@ public class UiText {
                             \t(1) <- Back to Main Menu
                             \t(2)    Add new Expense
                             \t(3)    Add new Income
+                            """);
+    }
+
+    public static void transactionHistoryMenu() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1) <- Back to Main Menu
+                            \t(2)    Transaction History
+                            \t(3)    Income History
+                            \t(4)    Expense History
                             """);
     }
 
@@ -67,6 +85,10 @@ public class UiText {
 
     public static void transactionAmount() {
         System.out.println("Enter the transaction amount: ");
+    }
+
+    public static void balanceText(double balance) {
+        System.out.printf("Your current balance is: %.2f\n", balance);
     }
 
 }
