@@ -45,8 +45,7 @@ public class TrackerApp {
         trackerCore.printBalance();
         int selectedOption = input.numberInput(2, UiText::checkBalanceMenu);
         switch (selectedOption) {
-            case 1 -> {
-            }
+            case 1 -> {}
             case 2 -> saveAndExit();
         }
     }
@@ -55,8 +54,7 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(3, UiText::newTransactionMenu);
         switch (selectedOption) {
-            case 1 -> {
-            }
+            case 1 -> {}
             case 2 -> trackerCore.addExpense((Expense) generateTransaction("expense"));
             case 3 -> trackerCore.addIncome((Income) generateTransaction("income"));
         }
@@ -66,23 +64,24 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(4, UiText::transactionHistoryMenu);
         switch (selectedOption) {
-            case 1 -> {
-            }
+            case 1 -> {}
             case 2 -> transactionHistoryGenerator(trackerCore.mergeTransactionList(
                     trackerCore.getExpenseList(),
                     trackerCore.getIncomeList()));
+            case 3 -> transactionHistoryGenerator(trackerCore.getIncomeList());
+            case 4 -> transactionHistoryGenerator(trackerCore.getExpenseList());
         }
     }
 
-    public void transactionHistoryGenerator(List<Transaction> transactionList) {
+    public void transactionHistoryGenerator(List<? extends Transaction> transactionList) {
         UiText.clearScreen();
         int selectedOption = input.numberInput(3, UiText::dateSelectionMenu);
         switch (selectedOption) {
             case 1 -> {}
             case 2 -> transactionHistorySortBy(trackerCore.filterListByDate(
                     transactionList,
-                    LocalDate.now(),
-                    LocalDate.now().minusDays(1000)));
+                    LocalDate.now().minusDays(30),
+                    LocalDate.now()));
         }
     }
 
@@ -90,9 +89,11 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(5, UiText::sortByMenu);
         switch (selectedOption) {
-            case 1 -> {
-            }
-            case 2 -> printTransactions(trackerCore.sortByDate(transactionList, false));
+            case 1 -> {}
+            case 2 -> printTransactions(trackerCore.sortByDate(transactionList, true));
+            case 3 -> printTransactions(trackerCore.sortByDate(transactionList, false));
+            case 4 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
+            case 5 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, false));
         }
     }
 
@@ -115,11 +116,7 @@ public class TrackerApp {
     }
 
     public void printTransactions(List<Transaction> transactionList) {
-        System.out.println("lol");
         transactionList.forEach(System.out::println);
-        for (Transaction transaction : transactionList){
-            System.out.println(transaction);
-        }
     }
 
     public void saveAndExit() {

@@ -51,6 +51,7 @@ public abstract class Transaction implements Serializable {
         return "\tDate: " + date +
                 "\n\tAmount: " + transactionValue +
                 "\n\tDescription : " + transactionDescription +
-                "\n\tType: " + transactionType;
+                "\n\tType: " + transactionType +
+                "\n";
     }
 }
