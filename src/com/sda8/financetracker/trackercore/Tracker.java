@@ -15,8 +15,8 @@ import java.util.stream.Stream;
 
 public class Tracker implements Serializable {
     private double balance;
-    private ArrayList<Expense> expenseList;
-    private ArrayList<Income> incomeList;
+    private List<Expense> expenseList;
+    private List<Income> incomeList;
 
     public Tracker() {
         this.balance = 0;
@@ -42,19 +42,27 @@ public class Tracker implements Serializable {
         incomeList.add(income);
     }
 
-    public ArrayList<Expense> getExpenseList() {
+    public List<Expense> getExpenseList() {
         return this.expenseList;
     }
 
-    public ArrayList<Income> getIncomeList() {
+    public List<Income> getIncomeList() {
         return this.incomeList;
     }
 
-    public <T extends Transaction> List<T> sortByDate(List<T> list) {
-        return list.stream()
-                .sorted(Comparator.comparing(T::getDate)
-                        .reversed())
-                .collect(Collectors.toList());
+
+
+    public <T extends Transaction> List<T> sortByDate(List<T> list, boolean reversed) {
+        if (reversed){
+            return list.stream()
+                    .sorted(Comparator.comparing(T::getDate)
+                            .reversed())
+                    .collect(Collectors.toList());
+        } else {
+            return list.stream()
+                    .sorted(Comparator.comparing(T::getDate))
+                    .collect(Collectors.toList());
+        }
     }
 
     public <T extends Transaction> List<T> sortByTransactionValue(List<T> list, boolean reversed) {
@@ -70,13 +78,15 @@ public class Tracker implements Serializable {
         }
     }
 
-    public <T extends Transaction> List<T> mergeTransactionList(List<T> list1, List<T> list2) {
+    public <T extends Transaction> List<Transaction> mergeTransactionList(List<Expense> expenseList, List<Income> incomeList) {
         return Stream.concat(
-                list1.stream(),
-                list2.stream())
+                expenseList.stream(),
+                incomeList.stream())
                 .collect(Collectors.toList());
     }
 
+
+    //Readability T
     public <T extends Transaction> List<T> filterListByDate(List<T> listToFilter, LocalDate startDate, LocalDate endDate){
         return  listToFilter.stream()
                 .filter(T -> T.getDate().compareTo(startDate) >= 0 && T.getDate().compareTo(endDate) <= 0)

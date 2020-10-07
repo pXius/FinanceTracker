@@ -52,6 +52,27 @@ public class UiText {
                             """);
     }
 
+    public static void dateSelectionMenu() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1) <- Back to Transaction History
+                            \t(2)    Last 30 days
+                            \t(3)    Custom Period...
+                            """);
+    }
+
+    public static void sortByMenu() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1) <- Back to Main Menu
+                            \t       Sort by...
+                            \t(2)    Date --> Newest First
+                            \t(3)    Date --> Oldest First
+                            \t(4)    Transaction Value --> Highest First
+                            \t(5)    Transaction Value --> Lowest First
+                            """);
+    }
+
     public static void invalidInput() {
         UiText.clearScreen();
         System.out.println("Warning: Invalid Input!\n");
@@ -84,19 +105,11 @@ public class UiText {
     }
 
     public static void transactionAmount() {
-        System.out.println("Enter the transaction amount: ");
+        System.out.println("Enter the transaction amount: \n");
     }
 
     public static void balanceText(double balance) {
         System.out.printf("Your current balance is: %.2f\n", balance);
     }
 
-    public static void dateSelectionMenu() {
-        System.out.println( """
-                            Please select an option:
-                            \t(1) <- Back to Transaction History
-                            \t(2)    Last 30 days
-                            \t(3)    Custom Period...
-                            """);
-    }
 }

@@ -9,6 +9,7 @@ import com.sda8.financetracker.ui.UiInput;
 import com.sda8.financetracker.ui.UiText;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class TrackerApp {
     private final Tracker trackerCore;
@@ -34,8 +35,7 @@ public class TrackerApp {
             case 1 -> checkBalance();
             case 2 -> newTransaction();
             case 3 -> transactionHistory();
-            case 4 -> {
-            }
+            case 4 -> System.out.println(trackerCore.getExpenseList());
             case 5 -> saveAndExit();
         }
     }
@@ -66,15 +66,33 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(4, UiText::transactionHistoryMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
+            case 2 -> transactionHistoryGenerator(trackerCore.mergeTransactionList(
+                    trackerCore.getExpenseList(),
+                    trackerCore.getIncomeList()));
         }
     }
 
-    public void transactionHistoryGenerator() {
+    public void transactionHistoryGenerator(List<Transaction> transactionList) {
         UiText.clearScreen();
         int selectedOption = input.numberInput(3, UiText::dateSelectionMenu);
         switch (selectedOption) {
             case 1 -> {}
+            case 2 -> transactionHistorySortBy(trackerCore.filterListByDate(
+                    transactionList,
+                    LocalDate.now(),
+                    LocalDate.now().minusDays(1000)));
+        }
+    }
+
+    public void transactionHistorySortBy(List<Transaction> transactionList) {
+        UiText.clearScreen();
+        int selectedOption = input.numberInput(5, UiText::sortByMenu);
+        switch (selectedOption) {
+            case 1 -> {
+            }
+            case 2 -> printTransactions(trackerCore.sortByDate(transactionList, false));
         }
     }
 
@@ -96,10 +114,13 @@ public class TrackerApp {
         }
     }
 
-    public void printTransactions(){
-        //
+    public void printTransactions(List<Transaction> transactionList) {
+        System.out.println("lol");
+        transactionList.forEach(System.out::println);
+        for (Transaction transaction : transactionList){
+            System.out.println(transaction);
+        }
     }
-
 
     public void saveAndExit() {
         Storage.saveData(trackerCore);

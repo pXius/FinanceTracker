@@ -1,9 +1,10 @@
 package com.sda8.financetracker.transactions;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Transaction {
+public abstract class Transaction implements Serializable {
     LocalDate date;
     double transactionValue;
     String transactionDescription;
