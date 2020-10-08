@@ -82,7 +82,26 @@ public class TrackerApp {
                     transactionList,
                     LocalDate.now().minusDays(30),
                     LocalDate.now()));
+            case 3 -> customDateSelection(transactionList);
         }
+    }
+
+    public void customDateSelection(List<? extends Transaction> transactionList){
+        UiText.clearScreen();
+        LocalDate startDate = input.dateInput(UiText::startDateText);
+        LocalDate endDate = todayOrCustomDate(UiText::endDateText);
+        transactionHistorySortBy(trackerCore.filterListByDate(transactionList, startDate, endDate));
+    }
+
+    public LocalDate todayOrCustomDate(Runnable textForDateInput){
+        UiText.clearScreen();
+        int selectedOption = input.numberInput(2, UiText::todayOrCustomDate);
+        LocalDate todayOrCustom = null;
+        switch (selectedOption){
+            case 1 -> todayOrCustom = LocalDate.now();
+            case 2 -> todayOrCustom = input.dateInput(textForDateInput);
+        }
+        return todayOrCustom;
     }
 
     public void transactionHistorySortBy(List<Transaction> transactionList) {
@@ -106,7 +125,8 @@ public class TrackerApp {
         double transactionValue = input.amountInput(UiText::transactionAmount);
         String transactionDescription = input.textInput(UiText::transactionDescriptionText);
         String transactionType = input.textInput(UiText::transactionTypeText);
-        LocalDate transactionDate = input.dateInput();
+        UiText.transactionDateMenu();
+        LocalDate transactionDate = todayOrCustomDate(UiText::transactionDateText);
         //Determine the type of Transaction object to create and return.
         if (expenseOrIncome.equals("expense")) {
             return new Expense(transactionDate, transactionValue, transactionType, transactionDescription);

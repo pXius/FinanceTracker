@@ -6,6 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         TrackerApp app = new TrackerApp();
-        app.mainMenu();
+        app.run();
     }
 }

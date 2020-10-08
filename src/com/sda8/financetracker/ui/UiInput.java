@@ -58,11 +58,11 @@ public class UiInput {
      * Generate LocalDate object based on console input.
      * Console request text will be based on UiText.dateInputText() from the UiText class.
      * */
-    public LocalDate dateInput() {
+    public LocalDate dateInput(Runnable uiTextCall) {
         LocalDate date = null;
         while (date == null) {
             try {
-                UiText.dateInputText();
+                uiTextCall.run();
                 if (scanner.hasNextLine()) {
                     String input = scanner.nextLine();
                     date = DateTimeFormatter.ofPattern("dd-MM-yyyy").parse(input, LocalDate::from);

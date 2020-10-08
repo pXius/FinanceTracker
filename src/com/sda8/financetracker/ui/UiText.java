@@ -20,7 +20,7 @@ public class UiText {
                             \t(1) Check Balance
                             \t(2) New Transaction
                             \t(3) Transaction History
-                            \t(4) Profile
+                            \t(4) Transaction Search
                             \t(5) Save and Exit
                             """);
     }
@@ -65,9 +65,11 @@ public class UiText {
         System.out.println( """
                             Please select an option:
                             \t(1) <- Back to Main Menu
+                            
                             \t       Sort by...
                             \t(2)    Date --> Newest First
                             \t(3)    Date --> Oldest First
+                            
                             \t(4)    Transaction Value --> Highest First
                             \t(5)    Transaction Value --> Lowest First
                             """);
@@ -84,10 +86,36 @@ public class UiText {
         System.out.flush();
     }
 
-    public static void dateInputText() {
+    public static void transactionDateText() {
         System.out.println( """
-                            Enter a date:
+                            Enter transaction date date:
                             dd-mm-yyyy | ie. 14-06-2020
+                            """);
+    }
+
+    public static void transactionDateMenu() {
+        System.out.println("Transaction Date: ");
+    }
+
+    public static void startDateText() {
+        System.out.println( """
+                            Enter a start date:
+                            dd-mm-yyyy | ie. 14-06-2020
+                            """);
+    }
+
+    public static void endDateText() {
+        System.out.println( """
+                            Enter an end date:
+                            dd-mm-yyyy | ie. 14-06-2020
+                            """);
+    }
+
+    public static void todayOrCustomDate() {
+        System.out.println( """
+                            Please select an option:
+                            \t(1)    Today
+                            \t(2)    Other Date...
                             """);
     }
 
