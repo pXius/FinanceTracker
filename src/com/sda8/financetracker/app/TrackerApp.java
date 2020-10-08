@@ -45,7 +45,8 @@ public class TrackerApp {
         trackerCore.printBalance();
         int selectedOption = input.numberInput(2, UiText::checkBalanceMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> saveAndExit();
         }
     }
@@ -54,7 +55,8 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(3, UiText::newTransactionMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> trackerCore.addExpense((Expense) generateTransaction("expense"));
             case 3 -> trackerCore.addIncome((Income) generateTransaction("income"));
         }
@@ -64,7 +66,8 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(4, UiText::transactionHistoryMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> transactionHistoryGenerator(trackerCore.mergeTransactionList(
                     trackerCore.getExpenseList(),
                     trackerCore.getIncomeList()));
@@ -77,7 +80,8 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(3, UiText::dateSelectionMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> transactionHistorySortBy(trackerCore.filterListByDate(
                     transactionList,
                     LocalDate.now().minusDays(30),
@@ -86,18 +90,18 @@ public class TrackerApp {
         }
     }
 
-    public void customDateSelection(List<? extends Transaction> transactionList){
+    public void customDateSelection(List<? extends Transaction> transactionList) {
         UiText.clearScreen();
         LocalDate startDate = input.dateInput(UiText::startDateText);
         LocalDate endDate = todayOrCustomDate(UiText::endDateText);
         transactionHistorySortBy(trackerCore.filterListByDate(transactionList, startDate, endDate));
     }
 
-    public LocalDate todayOrCustomDate(Runnable textForDateInput){
+    public LocalDate todayOrCustomDate(Runnable textForDateInput) {
         UiText.clearScreen();
         int selectedOption = input.numberInput(2, UiText::todayOrCustomDate);
         LocalDate todayOrCustom = null;
-        switch (selectedOption){
+        switch (selectedOption) {
             case 1 -> todayOrCustom = LocalDate.now();
             case 2 -> todayOrCustom = input.dateInput(textForDateInput);
         }
@@ -108,7 +112,8 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(5, UiText::sortByMenu);
         switch (selectedOption) {
-            case 1 -> {}
+            case 1 -> {
+            }
             case 2 -> printTransactions(trackerCore.sortByDate(transactionList, true));
             case 3 -> printTransactions(trackerCore.sortByDate(transactionList, false));
             case 4 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
@@ -136,7 +141,34 @@ public class TrackerApp {
     }
 
     public void printTransactions(List<Transaction> transactionList) {
-        transactionList.forEach(System.out::println);
+        transactionList.forEach(transaction -> {
+            System.out.printf("Transaction No: %d\n", transactionList.indexOf(transaction) + 1);
+            System.out.println(transaction);
+        });
+        editOrDelete(transactionList);
+    }
+
+    public void editOrDelete(List<Transaction> transactionList) {
+        int selectedOption = input.numberInput(3, UiText::editDeleteMenu);
+        switch (selectedOption) {
+            case 1 -> {
+            }
+            case 2 -> editSelectMenu(transactionList,
+                    transactionList.get(input.numberInput(transactionList.size(),
+                    UiText::enterTransactionNumber)));
+        }
+    }
+
+    public void editSelectMenu(List<Transaction> transactionList, Transaction transaction) {
+        UiText.clearScreen();
+        System.out.println(transaction);
+        int selectedOption = input.numberInput(5, UiText::editSelectMenu);
+        switch (selectedOption) {
+            case 1 -> {
+            }
+            case 2 -> {
+            }
+        }
     }
 
     public void saveAndExit() {
