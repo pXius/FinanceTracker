@@ -35,7 +35,7 @@ public class TrackerApp {
             case 1 -> checkBalance();
             case 2 -> newTransaction();
             case 3 -> transactionHistory();
-            case 4 -> System.out.println(trackerCore.getExpenseList());
+            case 4 -> {} //Coming Soon
             case 5 -> saveAndExit();
         }
     }
