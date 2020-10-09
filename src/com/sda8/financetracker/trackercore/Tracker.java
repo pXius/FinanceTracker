@@ -28,6 +28,10 @@ public class  Tracker implements Serializable {
         return balance;
     }
 
+    public void adjustBalance(double adjustment){
+        this.balance += adjustment;
+    }
+
     public void printBalance() {
         UiText.balanceText(this.balance);
     }

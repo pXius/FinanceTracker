@@ -20,7 +20,7 @@ public class UiText {
                 \t(1) Check Balance
                 \t(2) New Transaction
                 \t(3) Transaction History
-                \t(4) Transaction Search
+                \t(4) Transaction Search (Not Working Yet)
                 \t(5) Save and Exit
                 """);
     }
@@ -88,7 +88,7 @@ public class UiText {
                 Please select an option:
                 \t(1) <- Done
                 \t(2)    Edit Transaction
-                \t(3)    Delete Transaction
+                \t(3)    Delete Transaction (Not Working Yet)
                 """);
     }
 

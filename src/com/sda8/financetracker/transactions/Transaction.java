@@ -34,8 +34,14 @@ public abstract class Transaction implements Serializable {
         return transactionValue;
     }
 
-    public void setTransactionValue(double transactionValue) {
+    public double setTransactionValue(double transactionValue) {
+        double adjustmentDifference = transactionValue - this.transactionValue;
         this.transactionValue = transactionValue;
+        return adjustmentDifference;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
     }
 
     public String getTransactionDescription() {

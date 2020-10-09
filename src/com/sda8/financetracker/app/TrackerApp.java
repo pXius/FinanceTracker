@@ -57,8 +57,14 @@ public class TrackerApp {
         switch (selectedOption) {
             case 1 -> {
             }
-            case 2 -> trackerCore.addExpense((Expense) generateTransaction("expense"));
-            case 3 -> trackerCore.addIncome((Income) generateTransaction("income"));
+            case 2 -> {
+                trackerCore.addExpense((Expense) generateTransaction("expense"));
+                Storage.saveData(trackerCore);
+            }
+            case 3 -> {
+                trackerCore.addIncome((Income) generateTransaction("income"));
+                Storage.saveData(trackerCore);
+            }
         }
     }
 
@@ -155,19 +161,25 @@ public class TrackerApp {
             }
             case 2 -> editSelectMenu(transactionList,
                     transactionList.get(input.numberInput(transactionList.size(),
-                    UiText::enterTransactionNumber)));
+                            UiText::enterTransactionNumber) - 1));
+            case 3 -> {} //coming soon to a branch near you.
         }
     }
 
     public void editSelectMenu(List<Transaction> transactionList, Transaction transaction) {
-        UiText.clearScreen();
-        System.out.println(transaction);
-        int selectedOption = input.numberInput(5, UiText::editSelectMenu);
-        switch (selectedOption) {
-            case 1 -> {
+        boolean done = false;
+        while (!done) {
+            UiText.clearScreen();
+            System.out.println(transaction);
+            int selectedOption = input.numberInput(5, UiText::editSelectMenu);
+            switch (selectedOption) {
+                case 1 -> done = true;
+                case 2 -> trackerCore.adjustBalance(transaction.setTransactionValue(input.amountInput(UiText::transactionAmount)));
+                case 3 -> transaction.setTransactionDescription(input.textInput(UiText::transactionDescriptionText));
+                case 4 -> transaction.setTransactionType(input.textInput(UiText::transactionTypeText));
+                case 5 -> transaction.setDate(todayOrCustomDate(UiText::transactionDateText));
             }
-            case 2 -> {
-            }
+            Storage.saveData(trackerCore);
         }
     }
 
