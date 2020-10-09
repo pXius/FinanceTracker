@@ -87,7 +87,6 @@ public class  Tracker implements Serializable {
                 .collect(Collectors.toList());
     }
 
-
     public List<Transaction> filterListByDate(List<? extends Transaction> listToFilter, LocalDate startDate, LocalDate endDate){
         return  listToFilter.stream()
                 .filter(transaction -> transaction.getDate().compareTo(startDate) >= 0 && transaction.getDate().compareTo(endDate) <= 0)

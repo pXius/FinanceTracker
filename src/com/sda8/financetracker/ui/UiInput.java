@@ -36,7 +36,7 @@ public class UiInput {
     }
 
     /*
-     * Retrieve and double value from console.
+     * Retrieve double value from console.
      * Console request text will be based on consoleRequestText parameter.
      * */
     public double amountInput(Runnable uiTextCall) {
@@ -56,7 +56,7 @@ public class UiInput {
 
     /*
      * Generate LocalDate object based on console input.
-     * Console request text will be based on UiText.dateInputText() from the UiText class.
+     * Console request text will be based on uiTextCall from the UiText class.
      * */
     public LocalDate dateInput(Runnable uiTextCall) {
         LocalDate date = null;
