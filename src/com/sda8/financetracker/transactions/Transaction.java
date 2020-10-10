@@ -48,9 +48,15 @@ public abstract class Transaction implements Serializable {
     public String getTransactionDescription() {
         return transactionDescription;
     }
+    public String getLowerTransactionDescription() {
+        return transactionDescription.toLowerCase();
+    }
 
     public String getTransactionType() {
         return transactionType;
+    }
+    public String getLowerTransactionType() {
+        return transactionType.toLowerCase();
     }
 
     public void setTransactionDescription(String transactionDescription) {

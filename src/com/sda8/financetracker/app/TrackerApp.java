@@ -118,7 +118,7 @@ public class TrackerApp {
 
     public void transactionHistorySortBy(List<Transaction> transactionList) {
         UiText.clearScreen();
-        int selectedOption = input.numberInput(5, UiText::sortByMenu);
+        int selectedOption = input.numberInput(7, UiText::sortByMenu);
         switch (selectedOption) {
             case 1 -> {
             }
@@ -126,6 +126,8 @@ public class TrackerApp {
             case 3 -> printTransactions(trackerCore.sortByDate(transactionList, false));
             case 4 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
             case 5 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, false));
+            case 6 -> printTransactions(trackerCore.sortByDescription(transactionList));
+            case 7 -> printTransactions(trackerCore.sortByType(transactionList));
         }
     }
 

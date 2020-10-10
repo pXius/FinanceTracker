@@ -111,14 +111,14 @@ public class Tracker implements Serializable {
     public List<Transaction> sortByDescription(List<? extends Transaction> listToSort) {
         return listToSort
                 .stream()
-                .sorted(Comparator.comparing(Transaction::getTransactionDescription))
+                .sorted(Comparator.comparing(Transaction::getLowerTransactionDescription))
                 .collect(Collectors.toList());
     }
 
     public List<Transaction> sortByType(List<? extends Transaction> listToSort) {
         return listToSort
                 .stream()
-                .sorted(Comparator.comparing(Transaction::getTransactionType))
+                .sorted(Comparator.comparing(Transaction::getLowerTransactionType))
                 .collect(Collectors.toList());
     }
 

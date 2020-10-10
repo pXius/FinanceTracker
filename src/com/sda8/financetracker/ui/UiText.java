@@ -72,6 +72,9 @@ public class UiText {
                                             
                 \t(4)    Transaction Value --> Highest First
                 \t(5)    Transaction Value --> Lowest First
+                
+                \t(6)    Description --> Alphabetical
+                \t(7)    Type --> Alphabetical
                 """);
     }
 
