@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public abstract class Transaction implements Serializable {
+    private static final long serialVersionUID = 744322561565640084L;
     LocalDate date;
     double transactionValue;
     String transactionDescription;
@@ -46,6 +47,10 @@ public abstract class Transaction implements Serializable {
 
     public String getTransactionDescription() {
         return transactionDescription;
+    }
+
+    public String getTransactionType() {
+        return transactionType;
     }
 
     public void setTransactionDescription(String transactionDescription) {

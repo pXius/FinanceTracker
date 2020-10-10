@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 public class Storage {
     private static final String savedData = "data.txt";
 
-    public static boolean checkFile(){
+    public static boolean checkFile() {
         boolean fileIsUsable = true;
         Path file = Paths.get(savedData);
         if (!Files.exists(file)) fileIsUsable = false;
@@ -43,6 +43,8 @@ public class Storage {
         try {
             inputStream = new ObjectInputStream(new FileInputStream(savedData));
             restoredTracker = (Tracker) inputStream.readObject();
+        } catch (EOFException e) {
+            restoredTracker = new Tracker();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         } finally {

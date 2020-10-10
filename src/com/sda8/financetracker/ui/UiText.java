@@ -20,7 +20,7 @@ public class UiText {
                 \t(1) Check Balance
                 \t(2) New Transaction
                 \t(3) Transaction History
-                \t(4) Transaction Search (Not Working Yet)
+                \t(4) Transaction Search
                 \t(5) Save and Exit
                 """);
     }
@@ -104,6 +104,17 @@ public class UiText {
                 """);
     }
 
+    public static void searchMenu() {
+        System.out.println("""
+                What type of transactions would you like to search?
+                Please select an option:
+                \t(1) <- Done
+                \t(2)    Income Only
+                \t(3)    Expenses Only
+                \t(4)    Both
+                """);
+    }
+
     public static void enterTransactionNumber() {
         System.out.println("Enter Transaction Number: ");
     }
@@ -142,7 +153,7 @@ public class UiText {
     public static void transactionTypeText() {
         System.out.println("""
                 What Type of transaction is this?
-                ie. Entertainment, Transport, Medical
+                ie. Entertainment, Transport, Medical, Income, etc.
                 """);
     }
 
@@ -166,10 +177,17 @@ public class UiText {
         System.out.println("No transactions matching your search criteria...\n");
     }
 
+    public static void transactionAdded(){
+        System.out.println("Transaction successfully added.");
+    }
 
     public static void invalidInput() {
         UiText.clearScreen();
         System.out.println("Warning: Invalid Input!\n");
+    }
+
+    public static void searchKeywordText(){
+        System.out.println("Please enter a search phrase or keyword...");
     }
 
     public static void clearScreen() {

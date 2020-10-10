@@ -35,8 +35,7 @@ public class TrackerApp {
             case 1 -> checkBalance();
             case 2 -> newTransaction();
             case 3 -> transactionHistory();
-            case 4 -> {
-            } //Coming Soon
+            case 4 -> searchMenu();
             case 5 -> saveAndExit();
         }
     }
@@ -97,6 +96,8 @@ public class TrackerApp {
         }
     }
 
+
+
     public void customDateSelection(List<? extends Transaction> transactionList) {
         UiText.clearScreen();
         LocalDate startDate = input.dateInput(UiText::startDateText);
@@ -140,10 +141,14 @@ public class TrackerApp {
         UiText.transactionDateMenu();
         LocalDate transactionDate = todayOrCustomDate(UiText::transactionDateText);
         //Determine the type of Transaction object to create and return.
-        if (expenseOrIncome.equals("expense")) {
-            return new Expense(transactionDate, transactionValue, transactionType, transactionDescription);
-        } else {
-            return new Income(transactionDate, transactionValue, transactionType, transactionDescription);
+        try {
+            if (expenseOrIncome.equals("expense")) {
+                return new Expense(transactionDate, transactionValue, transactionType, transactionDescription);
+            } else {
+                return new Income(transactionDate, transactionValue, transactionType, transactionDescription);
+            }
+        } finally {
+            UiText.transactionAdded();
         }
     }
 
@@ -182,6 +187,23 @@ public class TrackerApp {
                 case 5 -> transaction.setDate(todayOrCustomDate(UiText::transactionDateText));
             }
             Storage.saveData(trackerCore);
+        }
+    }
+
+    public void searchMenu(){
+        UiText.clearScreen();
+        int selectedOption = input.numberInput(4, UiText::searchMenu);
+        switch (selectedOption){
+            case 1 -> {}
+            case 2 -> printTransactions(trackerCore.filterByKeyword(
+                    trackerCore.getIncomeList(),
+                    input.textInput(UiText::searchKeywordText).toLowerCase()));
+            case 3 -> printTransactions(trackerCore.filterByKeyword(
+                    trackerCore.getExpenseList(),
+                    input.textInput(UiText::searchKeywordText).toLowerCase()));
+            case 4 -> printTransactions(trackerCore.filterByKeyword(
+                    trackerCore.mergeTransactionList(trackerCore.getExpenseList(), trackerCore.getIncomeList()),
+                    input.textInput(UiText::searchKeywordText).toLowerCase()));
         }
     }
 
