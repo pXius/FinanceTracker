@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Tracker implements Serializable {
+    private static final long serialVersionUID = 5912330287419915858L;
     private double balance;
     private final List<Expense> expenseList;
     private final List<Income> incomeList;
@@ -96,5 +97,14 @@ public class Tracker implements Serializable {
         return listToFilter.stream()
                 .filter(transaction -> transaction.getDate().compareTo(startDate) >= 0 && transaction.getDate().compareTo(endDate) <= 0)
                 .collect(Collectors.toList());
+    }
+
+    public List<Transaction> filterByKeyword(List<? extends Transaction> listToFilter, String searchPhrase) {
+        List<Transaction> filteredList = new ArrayList<>();
+        for (Transaction transaction : listToFilter){
+            if ((transaction.getTransactionDescription().toLowerCase().contains(searchPhrase)) || (transaction.getTransactionType().toLowerCase().contains(searchPhrase)))
+                filteredList.add(transaction);
+        }
+        return filteredList;
     }
 }
