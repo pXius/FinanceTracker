@@ -88,7 +88,7 @@ public class UiText {
                 Please select an option:
                 \t(1) <- Done
                 \t(2)    Edit Transaction
-                \t(3)    Delete Transaction (Not Working Yet)
+                \t(3)    Delete Transaction
                 """);
     }
 
@@ -152,6 +152,18 @@ public class UiText {
 
     public static void balanceText(double balance) {
         System.out.printf("Your current balance is: %.2f\n", balance);
+    }
+
+    public static void deleteSuccessful(){
+        System.out.println("Transaction Successfully Deleted!\n");
+    }
+
+    public static void deleteFailed(){
+        System.out.println("Transaction could not be Deleted!\n");
+    }
+
+    public static void noSuchTransactions(){
+        System.out.println("No transactions matching your search criteria...\n");
     }
 
 

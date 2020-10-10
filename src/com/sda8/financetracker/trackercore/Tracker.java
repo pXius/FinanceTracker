@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class  Tracker implements Serializable {
+public class Tracker implements Serializable {
     private double balance;
     private final List<Expense> expenseList;
     private final List<Income> incomeList;
@@ -28,7 +28,7 @@ public class  Tracker implements Serializable {
         return balance;
     }
 
-    public void adjustBalance(double adjustment){
+    public void adjustBalance(double adjustment) {
         this.balance += adjustment;
     }
 
@@ -46,6 +46,11 @@ public class  Tracker implements Serializable {
         incomeList.add(income);
     }
 
+    public boolean deleteTransaction(Transaction transaction) {
+        List<? extends Transaction> transactionList = transaction instanceof Expense ? expenseList : incomeList;
+        return transactionList.remove(transaction);
+    }
+
     public List<Expense> getExpenseList() {
         return this.expenseList;
     }
@@ -54,8 +59,8 @@ public class  Tracker implements Serializable {
         return this.incomeList;
     }
 
-    public  List<Transaction> sortByDate(List<? extends Transaction> list, boolean reversed) {
-        if (reversed){
+    public List<Transaction> sortByDate(List<? extends Transaction> list, boolean reversed) {
+        if (reversed) {
             return list.stream()
                     .sorted(Comparator.comparing(Transaction::getDate)
                             .reversed())
@@ -87,8 +92,8 @@ public class  Tracker implements Serializable {
                 .collect(Collectors.toList());
     }
 
-    public List<Transaction> filterListByDate(List<? extends Transaction> listToFilter, LocalDate startDate, LocalDate endDate){
-        return  listToFilter.stream()
+    public List<Transaction> filterListByDate(List<? extends Transaction> listToFilter, LocalDate startDate, LocalDate endDate) {
+        return listToFilter.stream()
                 .filter(transaction -> transaction.getDate().compareTo(startDate) >= 0 && transaction.getDate().compareTo(endDate) <= 0)
                 .collect(Collectors.toList());
     }
