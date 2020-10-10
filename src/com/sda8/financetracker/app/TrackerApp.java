@@ -208,7 +208,8 @@ public class TrackerApp {
     }
 
     public void deleteTransaction(List<Transaction> transactionList) {
-        Transaction transactionToDelete = transactionList.get(input.numberInput(transactionList.size(), UiText::enterTransactionNumber) - 1);
+        transactionList.forEach(System.out::println);
+        Transaction transactionToDelete = transactionList.get(input.numberInput(transactionList.size(), UiText::deleteSelectText) - 1);
         boolean deleteSuccess = trackerCore.deleteTransaction(transactionToDelete);
         if (deleteSuccess) {
             trackerCore.adjustBalance(transactionToDelete.getTransactionValue());

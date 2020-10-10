@@ -173,12 +173,16 @@ public class UiText {
         System.out.println("Transaction could not be Deleted!\n");
     }
 
+    public static void deleteSelectText() {
+        System.out.println("Enter transaction number to delete: ");
+    }
+
     public static void noSuchTransactions(){
         System.out.println("No transactions matching your search criteria...\n");
     }
 
     public static void transactionAdded(){
-        System.out.println("Transaction successfully added.");
+        System.out.println("Transaction successfully added.\n");
     }
 
     public static void invalidInput() {
@@ -187,7 +191,7 @@ public class UiText {
     }
 
     public static void searchKeywordText(){
-        System.out.println("Please enter a search phrase or keyword...");
+        System.out.println("Please enter a search phrase or keyword...\n");
     }
 
     public static void clearScreen() {
