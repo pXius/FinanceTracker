@@ -63,18 +63,16 @@ public class UiText {
 
     public static void sortByMenu() {
         System.out.println("""
-                Please select an option:
-                \t(1) <- Back to Main Menu
+                Please select an option:          
+                \tSort by...
+                \t(1)    Date --> Newest First
+                \t(2)    Date --> Oldest First
                                             
-                \t       Sort by...
-                \t(2)    Date --> Newest First
-                \t(3)    Date --> Oldest First
-                                            
-                \t(4)    Transaction Value --> Highest First
-                \t(5)    Transaction Value --> Lowest First
+                \t(3    Transaction Value --> Highest First
+                \t(4)    Transaction Value --> Lowest First
                 
-                \t(6)    Description --> Alphabetical
-                \t(7)    Type --> Alphabetical
+                \t(5    Description --> Alphabetical
+                \t(6)    Type --> Alphabetical
                 """);
     }
 

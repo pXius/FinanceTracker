@@ -5,10 +5,12 @@ import com.sda8.financetracker.trackercore.Tracker;
 import com.sda8.financetracker.transactions.Expense;
 import com.sda8.financetracker.transactions.Income;
 import com.sda8.financetracker.transactions.Transaction;
+import com.sda8.financetracker.ui.Columns;
 import com.sda8.financetracker.ui.UiInput;
 import com.sda8.financetracker.ui.UiText;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrackerApp {
@@ -97,7 +99,6 @@ public class TrackerApp {
     }
 
 
-
     public void customDateSelection(List<? extends Transaction> transactionList) {
         UiText.clearScreen();
         LocalDate startDate = input.dateInput(UiText::startDateText);
@@ -120,15 +121,14 @@ public class TrackerApp {
         UiText.clearScreen();
         int selectedOption = input.numberInput(7, UiText::sortByMenu);
         switch (selectedOption) {
-            case 1 -> {
-            }
-            case 2 -> printTransactions(trackerCore.sortByDate(transactionList, true));
-            case 3 -> printTransactions(trackerCore.sortByDate(transactionList, false));
-            case 4 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
-            case 5 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, false));
-            case 6 -> printTransactions(trackerCore.sortByDescription(transactionList));
-            case 7 -> printTransactions(trackerCore.sortByType(transactionList));
+            case 1 -> printTransactions(trackerCore.sortByDate(transactionList, true));
+            case 2 -> printTransactions(trackerCore.sortByDate(transactionList, false));
+            case 3 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
+            case 4 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, false));
+            case 5 -> printTransactions(trackerCore.sortByDescription(transactionList));
+            case 6 -> printTransactions(trackerCore.sortByType(transactionList));
         }
+        editOrDelete(transactionList);
     }
 
     /*
@@ -155,12 +155,26 @@ public class TrackerApp {
     }
 
     public void printTransactions(List<Transaction> transactionList) {
+        if (transactionList.size() == 0) {
+            UiText.noSuchTransactions();
+        } else {
+            columnGenerator(transactionList).print();
+        }
+    }
+
+    public Columns columnGenerator(List<Transaction> transactionList) {
+        Columns columns = new Columns();
+        columns.addLine("No.", "\tTransaction Date", "\tTransaction Description", "\tTransaction Value");
         transactionList.forEach(transaction -> {
-            System.out.printf("Transaction No: %d\n", transactionList.indexOf(transaction) + 1);
-            System.out.println(transaction);
+            String transactionValue = transaction instanceof Expense ?
+                    "(" + transaction.getTransactionValue() + ")" : " " + transaction.getTransactionValue();
+            columns.addLine(
+                    "" + (transactionList.indexOf(transaction) + 1),
+                    "\t" + transaction.getDateString(),
+                    "\t" + transaction.getLowerTransactionDescription(),
+                    "\t" + transactionValue);
         });
-        if (transactionList.size() == 0) UiText.noSuchTransactions();
-        else editOrDelete(transactionList);
+        return columns;
     }
 
     public void editOrDelete(List<Transaction> transactionList) {
@@ -168,18 +182,19 @@ public class TrackerApp {
         switch (selectedOption) {
             case 1 -> {
             }
-            case 2 -> editSelectMenu(transactionList,
-                    transactionList.get(input.numberInput(transactionList.size(),
-                            UiText::enterTransactionNumber) - 1));
+            case 2 -> editSelectMenu(transactionList.get(input.numberInput(transactionList.size(),
+                    UiText::enterTransactionNumber) - 1));
             case 3 -> deleteTransaction(transactionList);
         }
     }
 
-    public void editSelectMenu(List<Transaction> transactionList, Transaction transaction) {
+    public void editSelectMenu(Transaction transaction) {
+        List<Transaction> listToPrint = new ArrayList<>();
+        listToPrint.add(transaction);
         boolean done = false;
         while (!done) {
             UiText.clearScreen();
-            System.out.println(transaction);
+            printTransactions(listToPrint);
             int selectedOption = input.numberInput(5, UiText::editSelectMenu);
             switch (selectedOption) {
                 case 1 -> done = true;
@@ -192,11 +207,12 @@ public class TrackerApp {
         }
     }
 
-    public void searchMenu(){
+    public void searchMenu() {
         UiText.clearScreen();
         int selectedOption = input.numberInput(4, UiText::searchMenu);
-        switch (selectedOption){
-            case 1 -> {}
+        switch (selectedOption) {
+            case 1 -> {
+            }
             case 2 -> printTransactions(trackerCore.filterByKeyword(
                     trackerCore.getIncomeList(),
                     input.textInput(UiText::searchKeywordText).toLowerCase()));
@@ -210,14 +226,14 @@ public class TrackerApp {
     }
 
     public void deleteTransaction(List<Transaction> transactionList) {
-        transactionList.forEach(System.out::println);
+        printTransactions(transactionList);
         Transaction transactionToDelete = transactionList.get(input.numberInput(transactionList.size(), UiText::deleteSelectText) - 1);
         boolean deleteSuccess = trackerCore.deleteTransaction(transactionToDelete);
         if (deleteSuccess) {
             trackerCore.adjustBalance(transactionToDelete.getTransactionValue());
             UiText.deleteSuccessful();
-        }
-        else UiText.deleteFailed();
+            Storage.saveData(trackerCore);
+        } else UiText.deleteFailed();
     }
 
     public void saveAndExit() {
