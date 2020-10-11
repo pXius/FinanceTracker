@@ -120,10 +120,6 @@ public class UiText {
                 """);
     }
 
-    public static void enterTransactionNumber() {
-        System.out.println("Enter Transaction Number: ");
-    }
-
     public static void transactionDateMenu() {
         System.out.println("Transaction Date: ");
     }

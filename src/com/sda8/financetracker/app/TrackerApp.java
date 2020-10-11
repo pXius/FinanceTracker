@@ -165,14 +165,15 @@ public class TrackerApp {
 
     public Columns columnGenerator(List<Transaction> transactionList) {
         Columns columns = new Columns();
-        columns.addLine("No.", "\tTransaction Date", "\tTransaction Description", "\tTransaction Value");
-        columns.addLine("", "", "", "");
+        columns.addLine("No.", "\tDate", "\tType", "\tDescription", "\tValue");
+        columns.addLine("", "", "", "", "");
         transactionList.forEach(transaction -> {
             String transactionValue = transaction instanceof Expense ?
                     "(" + transaction.getTransactionValue() + ")" : " " + transaction.getTransactionValue();
             columns.addLine(
                     "" + (transactionList.indexOf(transaction) + 1),
                     "\t" + transaction.getDateString(),
+                    "\t" + transaction.getTransactionType(),
                     "\t" + transaction.getTransactionDescription(),
                     "\t" + transactionValue);
         });
@@ -255,7 +256,9 @@ public class TrackerApp {
             trackerCore.adjustBalance(transactionToDelete.getTransactionValue());
             UiText.deleteSuccessful();
             Storage.saveData(trackerCore);
-        } else UiText.deleteFailed();
+        } else {
+            UiText.deleteFailed();
+        }
     }
 
     public void saveAndExit() {

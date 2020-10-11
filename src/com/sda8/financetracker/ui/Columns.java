@@ -10,19 +10,16 @@ public class Columns {
     List<Integer> maxLengths = new ArrayList<>();
     int numColumns = -1;
 
-    public Columns addLine(String... line) {
-
+    public void addLine(String... line) {
         if (numColumns == -1) {
             numColumns = line.length;
             for (int column = 0; column < numColumns; column++) {
                 maxLengths.add(0);
             }
         }
-
         if (numColumns != line.length) {
             throw new IllegalArgumentException();
         }
-
         for (int column = 0; column < numColumns; column++) {
             int length = Math
                     .max(
@@ -31,10 +28,7 @@ public class Columns {
                     );
             maxLengths.set(column, length);
         }
-
         lines.add(Arrays.asList(line));
-
-        return this;
     }
 
     public void print() {
@@ -42,20 +36,22 @@ public class Columns {
     }
 
     public String toString() {
-        String result = "";
+        StringBuilder column = new StringBuilder();
         for (List<String> line : lines) {
             for (int i = 0; i < numColumns; i++) {
-                result += pad(line.get(i), maxLengths.get(i) + 1);
+                column.append(pad(line.get(i), maxLengths.get(i) + 1));
             }
-            result += System.lineSeparator();
+            column.append(System.lineSeparator());
         }
-        return result;
+        return column.toString();
     }
 
     private String pad(String word, int newLength) {
-        while (word.length() < newLength) {
-            word += " ";
+        StringBuilder spacesBetweenColumns = new StringBuilder(word);
+        while (spacesBetweenColumns.length() < newLength) {
+            spacesBetweenColumns.append(" ");
         }
+        word = spacesBetweenColumns.toString();
         return word;
     }
 }
