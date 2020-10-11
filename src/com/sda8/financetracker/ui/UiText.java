@@ -68,10 +68,10 @@ public class UiText {
                 \t(1)    Date --> Newest First
                 \t(2)    Date --> Oldest First
                                             
-                \t(3    Transaction Value --> Highest First
+                \t(3)    Transaction Value --> Highest First
                 \t(4)    Transaction Value --> Lowest First
                 
-                \t(5    Description --> Alphabetical
+                \t(5)    Description --> Alphabetical
                 \t(6)    Type --> Alphabetical
                 """);
     }
@@ -103,6 +103,10 @@ public class UiText {
                 \t(4)    Edit Type
                 \t(5)    Edit Date
                 """);
+    }
+
+    public static void transactionToEdit(){
+        System.out.println("Enter transaction number to edit: ");
     }
 
     public static void searchMenu() {

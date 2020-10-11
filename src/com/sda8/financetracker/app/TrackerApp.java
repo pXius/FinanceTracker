@@ -22,10 +22,11 @@ public class TrackerApp {
         this.trackerCore = Storage.checkFile() ? Storage.restoreData() : new Tracker();
         this.input = new UiInput();
         this.running = true;
-        UiText.welcome();
     }
 
     public void run() {
+        UiText.clearScreen();
+        UiText.welcome();
         while (running) {
             mainMenu();
         }
@@ -165,13 +166,14 @@ public class TrackerApp {
     public Columns columnGenerator(List<Transaction> transactionList) {
         Columns columns = new Columns();
         columns.addLine("No.", "\tTransaction Date", "\tTransaction Description", "\tTransaction Value");
+        columns.addLine("", "", "", "");
         transactionList.forEach(transaction -> {
             String transactionValue = transaction instanceof Expense ?
                     "(" + transaction.getTransactionValue() + ")" : " " + transaction.getTransactionValue();
             columns.addLine(
                     "" + (transactionList.indexOf(transaction) + 1),
                     "\t" + transaction.getDateString(),
-                    "\t" + transaction.getLowerTransactionDescription(),
+                    "\t" + transaction.getTransactionDescription(),
                     "\t" + transactionValue);
         });
         return columns;
@@ -182,9 +184,15 @@ public class TrackerApp {
         switch (selectedOption) {
             case 1 -> {
             }
-            case 2 -> editSelectMenu(transactionList.get(input.numberInput(transactionList.size(),
-                    UiText::enterTransactionNumber) - 1));
-            case 3 -> deleteTransaction(transactionList);
+            case 2 -> {
+                printTransactions(transactionList);
+                editSelectMenu(transactionList.get(input.numberInput(transactionList.size(),
+                        UiText::transactionToEdit) - 1));
+            }
+            case 3 -> {
+                printTransactions(transactionList);
+                deleteTransaction(transactionList);
+            }
         }
     }
 
@@ -209,25 +217,39 @@ public class TrackerApp {
 
     public void searchMenu() {
         UiText.clearScreen();
+        List<Transaction> searchedList = new ArrayList<>();
         int selectedOption = input.numberInput(4, UiText::searchMenu);
         switch (selectedOption) {
             case 1 -> {
             }
-            case 2 -> printTransactions(trackerCore.filterByKeyword(
-                    trackerCore.getIncomeList(),
-                    input.textInput(UiText::searchKeywordText).toLowerCase()));
-            case 3 -> printTransactions(trackerCore.filterByKeyword(
-                    trackerCore.getExpenseList(),
-                    input.textInput(UiText::searchKeywordText).toLowerCase()));
-            case 4 -> printTransactions(trackerCore.filterByKeyword(
-                    trackerCore.mergeTransactionList(trackerCore.getExpenseList(), trackerCore.getIncomeList()),
-                    input.textInput(UiText::searchKeywordText).toLowerCase()));
+            case 2 -> {
+                searchedList = trackerCore.filterByKeyword(trackerCore
+                        .getIncomeList(), input
+                        .textInput(UiText::searchKeywordText)
+                        .toLowerCase());
+                printTransactions(searchedList);
+            }
+            case 3 -> {
+                searchedList = trackerCore.filterByKeyword(
+                        trackerCore.getExpenseList(),
+                        input.textInput(UiText::searchKeywordText).toLowerCase());
+                printTransactions(searchedList);
+            }
+            case 4 -> {
+                searchedList = trackerCore.filterByKeyword(
+                        trackerCore.mergeTransactionList(
+                                trackerCore.getExpenseList(),
+                                trackerCore.getIncomeList()),
+                        input.textInput(UiText::searchKeywordText).toLowerCase());
+                printTransactions(searchedList);
+            }
         }
+        editOrDelete(searchedList);
     }
 
     public void deleteTransaction(List<Transaction> transactionList) {
-        printTransactions(transactionList);
-        Transaction transactionToDelete = transactionList.get(input.numberInput(transactionList.size(), UiText::deleteSelectText) - 1);
+        Transaction transactionToDelete = transactionList.get(
+                input.numberInput(transactionList.size(), UiText::deleteSelectText) - 1);
         boolean deleteSuccess = trackerCore.deleteTransaction(transactionToDelete);
         if (deleteSuccess) {
             trackerCore.adjustBalance(transactionToDelete.getTransactionValue());
