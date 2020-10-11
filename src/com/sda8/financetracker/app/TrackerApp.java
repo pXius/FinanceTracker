@@ -119,17 +119,18 @@ public class TrackerApp {
     }
 
     public void transactionHistorySortBy(List<Transaction> transactionList) {
+        List<Transaction> sortedList = null;
         UiText.clearScreen();
         int selectedOption = input.numberInput(7, UiText::sortByMenu);
         switch (selectedOption) {
-            case 1 -> printTransactions(trackerCore.sortByDate(transactionList, true));
-            case 2 -> printTransactions(trackerCore.sortByDate(transactionList, false));
-            case 3 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
-            case 4 -> printTransactions(trackerCore.sortByTransactionValue(transactionList, false));
-            case 5 -> printTransactions(trackerCore.sortByDescription(transactionList));
-            case 6 -> printTransactions(trackerCore.sortByType(transactionList));
+            case 1 -> sortedList = printTransactions(trackerCore.sortByDate(transactionList, true));
+            case 2 -> sortedList = printTransactions(trackerCore.sortByDate(transactionList, false));
+            case 3 -> sortedList = printTransactions(trackerCore.sortByTransactionValue(transactionList, true));
+            case 4 -> sortedList = printTransactions(trackerCore.sortByTransactionValue(transactionList, false));
+            case 5 -> sortedList = printTransactions(trackerCore.sortByDescription(transactionList));
+            case 6 -> sortedList = printTransactions(trackerCore.sortByType(transactionList));
         }
-        editOrDelete(transactionList);
+        editOrDelete(sortedList);
     }
 
     /*
@@ -155,21 +156,22 @@ public class TrackerApp {
         }
     }
 
-    public void printTransactions(List<Transaction> transactionList) {
+    public List<Transaction> printTransactions(List<Transaction> transactionList) {
         if (transactionList.size() == 0) {
             UiText.noSuchTransactions();
         } else {
             columnGenerator(transactionList).print();
         }
+        return transactionList;
     }
 
     public Columns columnGenerator(List<Transaction> transactionList) {
         Columns columns = new Columns();
-        columns.addLine("No.", "\tDate", "\tType", "\tDescription", "\tValue");
+        columns.addLine("No.", "\tDate", "\tType", "\tDescription", "\t"+String.format("%14s", "Value"));
         columns.addLine("", "", "", "", "");
         transactionList.forEach(transaction -> {
             String transactionValue = transaction instanceof Expense ?
-                    "(" + transaction.getTransactionValue() + ")" : " " + transaction.getTransactionValue();
+                    String.format("%,14.2f", (transaction.getTransactionValue() * -1)) : String.format("%,14.2f", transaction.getTransactionValue());
             columns.addLine(
                     "" + (transactionList.indexOf(transaction) + 1),
                     "\t" + transaction.getDateString(),
@@ -218,7 +220,7 @@ public class TrackerApp {
 
     public void searchMenu() {
         UiText.clearScreen();
-        List<Transaction> searchedList = new ArrayList<>();
+        List<Transaction> searchedList = null;
         int selectedOption = input.numberInput(4, UiText::searchMenu);
         switch (selectedOption) {
             case 1 -> {
