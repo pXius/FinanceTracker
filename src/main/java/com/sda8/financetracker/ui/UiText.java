@@ -1,9 +1,13 @@
 package com.sda8.financetracker.ui;
 
+import com.diogonunes.jcolor.Attribute;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
+
 public class UiText {
 
     public static void welcome() {
-        System.out.println("""
+        System.out.println(colorize("""
                                 
                 ███████╗██╗███╗   ██╗████████╗██████╗  █████╗  ██████╗██╗  ██╗
                 ██╔════╝██║████╗  ██║╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
@@ -11,9 +15,8 @@ public class UiText {
                 ██╔══╝  ██║██║╚██╗██║   ██║   ██╔══██╗██╔══██║██║     ██╔═██╗\s
                 ██║     ██║██║ ╚████║   ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗
                 ╚═╝     ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
-                
-                Please expand your terminal for the best experience.
-                """);
+                """, Attribute.BRIGHT_CYAN_TEXT()));
+        System.out.println(colorize("Please expand your terminal for the best experience.\n", Attribute.BRIGHT_MAGENTA_TEXT()));
     }
 
     public static void mainMenu() {
@@ -72,7 +75,7 @@ public class UiText {
                                             
                 \t(3)    Transaction Value --> Highest First
                 \t(4)    Transaction Value --> Lowest First
-                
+                                
                 \t(5)    Description --> Alphabetical
                 \t(6)    Type --> Alphabetical
                 """);
@@ -107,7 +110,7 @@ public class UiText {
                 """);
     }
 
-    public static void transactionToEdit(){
+    public static void transactionToEdit() {
         System.out.println("Enter transaction number to edit: ");
     }
 
@@ -165,14 +168,17 @@ public class UiText {
     }
 
     public static void balanceText(double balance) {
-        System.out.printf("Your current balance is: %.2f\n", balance);
+        String textBalance = balance > 0 ?
+                colorize(String.format("%.2f", balance), Attribute.BRIGHT_GREEN_TEXT()) :
+                colorize(String.format("%.2f", balance), Attribute.BRIGHT_RED_TEXT());
+        System.out.println("Your current balance is: " + textBalance);
     }
 
-    public static void deleteSuccessful(){
+    public static void deleteSuccessful() {
         System.out.println("Transaction Successfully Deleted!\n");
     }
 
-    public static void deleteFailed(){
+    public static void deleteFailed() {
         System.out.println("Transaction could not be Deleted!\n");
     }
 
@@ -180,11 +186,11 @@ public class UiText {
         System.out.println("Enter transaction number to delete: ");
     }
 
-    public static void noSuchTransactions(){
+    public static void noSuchTransactions() {
         System.out.println("No transactions matching your search criteria...\n");
     }
 
-    public static void transactionAdded(){
+    public static void transactionAdded() {
         System.out.println("Transaction successfully added.\n");
     }
 
@@ -193,7 +199,7 @@ public class UiText {
         System.out.println("Warning: Invalid Input!\n");
     }
 
-    public static void searchKeywordText(){
+    public static void searchKeywordText() {
         System.out.println("Please enter a search phrase or keyword...\n");
     }
 

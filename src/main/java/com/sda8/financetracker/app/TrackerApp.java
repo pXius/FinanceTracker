@@ -1,5 +1,6 @@
 package com.sda8.financetracker.app;
 
+import com.diogonunes.jcolor.Attribute;
 import com.sda8.financetracker.datastorage.Storage;
 import com.sda8.financetracker.trackercore.Tracker;
 import com.sda8.financetracker.transactions.Expense;
@@ -12,6 +13,8 @@ import com.sda8.financetracker.ui.UiText;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.diogonunes.jcolor.Ansi.colorize;
 
 public class TrackerApp {
     private final Tracker trackerCore;
@@ -167,13 +170,14 @@ public class TrackerApp {
 
     public Columns columnGenerator(List<Transaction> transactionList) {
         Columns columns = new Columns();
-        columns.addLine("No.", "\tDate", "\tType", "\tDescription", "\t"+String.format("%14s", "Value"));
+        columns.addLine("No.", "\tDate", "\tType", "\tDescription", "\t" + String.format("%14s", "Value"));
         columns.addLine("", "", "", "", "");
         transactionList.forEach(transaction -> {
             String transactionValue = transaction instanceof Expense ?
-                    String.format("%,14.2f", (transaction.getTransactionValue() * -1)) : String.format("%,14.2f", transaction.getTransactionValue());
+                    colorize(String.format("%,14.2f", (transaction.getTransactionValue() * -1)), Attribute.BRIGHT_RED_TEXT()) :
+                    colorize(String.format("%,14.2f", transaction.getTransactionValue()), Attribute.BRIGHT_GREEN_TEXT());
             columns.addLine(
-                    "" + (transactionList.indexOf(transaction) + 1),
+                    String.format("%d", transactionList.indexOf(transaction) + 1),
                     "\t" + transaction.getDateString(),
                     "\t" + transaction.getTransactionType(),
                     "\t" + transaction.getTransactionDescription(),
