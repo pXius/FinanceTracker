@@ -22,11 +22,11 @@ public class UiText {
     public static void mainMenu() {
         System.out.println("""
                 Please select an option:
-                \t(1) Check Balance
-                \t(2) New Transaction
-                \t(3) Transaction History
-                \t(4) Transaction Search
-                \t(5) Save and Exit
+                \t(1) 💰 Check Balance 
+                \t(2) 📝 New Transaction 
+                \t(3) ⏳ Transaction History 
+                \t(4) 🔍 Transaction Search 
+                \t(5) 💾 Save and Exit 
                 """);
     }
 
@@ -171,7 +171,7 @@ public class UiText {
         String textBalance = balance > 0 ?
                 colorize(String.format("%.2f", balance), Attribute.BRIGHT_GREEN_TEXT()) :
                 colorize(String.format("%.2f", balance), Attribute.BRIGHT_RED_TEXT());
-        System.out.println("Your current balance is: " + textBalance);
+        System.out.println("Your current balance is: " + textBalance + "\n");
     }
 
     public static void deleteSuccessful() {
@@ -196,7 +196,7 @@ public class UiText {
 
     public static void invalidInput() {
         UiText.clearScreen();
-        System.out.println("Warning: Invalid Input!\n");
+        System.out.println("⚠️ Invalid Input!\n");
     }
 
     public static void searchKeywordText() {
