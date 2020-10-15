@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Storage {
-    private static final String savedData = "data.txt";
+    private static final String savedData = "data";
 
     public static boolean checkFile() {
         boolean fileIsUsable = true;
