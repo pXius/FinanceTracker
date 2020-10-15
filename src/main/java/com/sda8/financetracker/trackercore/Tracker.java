@@ -108,17 +108,19 @@ public class Tracker implements Serializable {
         return filteredList;
     }
 
+
+    //Do lambdas!!!
     public List<Transaction> sortByDescription(List<? extends Transaction> listToSort) {
         return listToSort
                 .stream()
-                .sorted(Comparator.comparing(Transaction::getLowerTransactionDescription))
+                .sorted(Comparator.comparing(transaction -> transaction.getTransactionDescription().toLowerCase()))
                 .collect(Collectors.toList());
     }
 
     public List<Transaction> sortByType(List<? extends Transaction> listToSort) {
         return listToSort
                 .stream()
-                .sorted(Comparator.comparing(Transaction::getLowerTransactionType))
+                .sorted(Comparator.comparing(transaction -> transaction.getTransactionType().toLowerCase()))
                 .collect(Collectors.toList());
     }
 

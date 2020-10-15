@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.sda8.financetracker"},{"l":"com.sda8.financetracker.app"},{"l":"com.sda8.financetracker.datastorage"},{"l":"com.sda8.financetracker.trackercore"},{"l":"com.sda8.financetracker.transactions"},{"l":"com.sda8.financetracker.ui"}];updateSearchResults();
