@@ -4,6 +4,12 @@ import com.diogonunes.jcolor.Attribute;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+/**
+ * This class is a collection of static void methods with a single purpose of printing
+ * text messages to the console. All methods in this class can be called from any other class without
+ * calling an instance, as they are all static.
+ * The sole purpose is the navigation and interpretation of the UI.
+ */
 public class UiText {
 
     public static void welcome() {
