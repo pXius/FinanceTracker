@@ -4,23 +4,17 @@ import com.diogonunes.jcolor.Attribute;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
-/**
- * This class is a collection of static void methods with a single purpose of printing
- * text messages to the console. All methods in this class can be called from any other class without
- * calling an instance, as they are all static.
- * The sole purpose is the navigation and interpretation of the UI.
- */
 public class UiText {
 
     public static void welcome() {
         System.out.println(colorize("""
                                 
-                ███████╗██╗███╗   ██╗████████╗██████╗  █████╗  ██████╗██╗  ██╗
-                ██╔════╝██║████╗  ██║╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║ ██╔╝
-                █████╗  ██║██╔██╗ ██║   ██║   ██████╔╝███████║██║     █████╔╝\s
-                ██╔══╝  ██║██║╚██╗██║   ██║   ██╔══██╗██╔══██║██║     ██╔═██╗\s
-                ██║     ██║██║ ╚████║   ██║   ██║  ██║██║  ██║╚██████╗██║  ██╗
-                ╚═╝     ╚═╝╚═╝  ╚═══╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝
+                ???????????????   ???????????????????  ??????  ??????????  ???
+                ????????????????  ??????????????????????????????????????? ????
+                ??????  ????????? ???   ???   ???????????????????     ???????\s
+                ??????  ?????????????   ???   ???????????????????     ???????\s
+                ???     ?????? ??????   ???   ???  ??????  ??????????????  ???
+                ???     ??????  ?????   ???   ???  ??????  ??? ??????????  ???
                 """, Attribute.BRIGHT_CYAN_TEXT()));
         System.out.println(colorize("Please expand your terminal for the best experience.\n", Attribute.BRIGHT_MAGENTA_TEXT()));
     }
@@ -28,11 +22,11 @@ public class UiText {
     public static void mainMenu() {
         System.out.println("""
                 Please select an option:
-                \t(1) 💰 Check Balance 
-                \t(2) 📝 New Transaction 
-                \t(3) ⏳ Transaction History 
-                \t(4) 🔍 Transaction Search 
-                \t(5) 💾 Save and Exit 
+                \t(1) ? Check Balance 
+                \t(2) ? New Transaction 
+                \t(3) ? Transaction History 
+                \t(4) ? Transaction Search 
+                \t(5) ? Save and Exit 
                 """);
     }
 
@@ -202,7 +196,7 @@ public class UiText {
 
     public static void invalidInput() {
         UiText.clearScreen();
-        System.out.println("⚠️ Invalid Input!\n");
+        System.out.println("?? Invalid Input!\n");
     }
 
     public static void searchKeywordText() {
