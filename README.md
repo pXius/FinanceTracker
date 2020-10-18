@@ -1,4 +1,4 @@
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)]
+![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)
 # FinanceTracker
 SDA8 FinanceTracker is a console based finance tracking app.  
 The app allows you to save income or expense items while keeping track of a balance.  
