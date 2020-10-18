@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.sda8.financetracker</OriginalElement>
+  <nodes>
+    <node x="30.0" y="0.0">com.sda8.financetracker.transactions</node>
+    <node x="93.5138888888889" y="109.0">com.sda8.financetracker.trackercore</node>
+    <node x="182.89814814814815" y="317.0">com.sda8.financetracker.app</node>
+    <node x="118.58333333333334" y="218.0">com.sda8.financetracker.datastorage</node>
+    <node x="200.39814814814815" y="396.0">com.sda8.financetracker.Main</node>
+    <node x="272.31481481481484" y="0.0">com.sda8.financetracker.ui</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.sda8.financetracker.Main" target="com.sda8.financetracker.app">
+      <point x="19.25" y="-14.5" />
+      <point x="258.14814814814815" y="371.0" />
+      <point x="266.89814814814815" y="371.0" />
+      <point x="28.0" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.trackercore" target="com.sda8.financetracker.transactions">
+      <point x="-14.166666666666657" y="-14.5" />
+      <point x="164.34722222222223" y="89.0" />
+      <point x="157.83333333333334" y="89.0" />
+      <point x="39.33333333333334" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.app" target="com.sda8.financetracker.transactions">
+      <point x="-49.0" y="-14.5" />
+      <point x="189.89814814814815" y="297.0" />
+      <point x="39.18055555555557" y="297.0" />
+      <point x="39.18055555555557" y="79.0" />
+      <point x="79.16666666666666" y="79.0" />
+      <point x="-39.33333333333334" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.ui" target="com.sda8.financetracker.ui">
+      <point x="-42.0" y="14.5" />
+      <point x="282.81481481481484" y="49.0" />
+      <point x="252.31481481481484" y="49.0" />
+      <point x="252.31481481481484" y="14.5" />
+      <point x="-52.5" y="-0.0" />
+    </edge>
+    <edge source="com.sda8.financetracker.datastorage" target="com.sda8.financetracker.trackercore">
+      <point x="42.5" y="-14.5" />
+      <point x="246.08333333333334" y="198.0" />
+      <point x="221.0138888888889" y="198.0" />
+      <point x="42.5" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.transactions" target="com.sda8.financetracker.transactions">
+      <point x="-78.66666666666666" y="14.5" />
+      <point x="39.83333333333334" y="49.0" />
+      <point x="10.0" y="49.0" />
+      <point x="10.0" y="21.75" />
+      <point x="-88.5" y="7.25" />
+    </edge>
+    <edge source="com.sda8.financetracker.trackercore" target="com.sda8.financetracker.ui">
+      <point x="70.83333333333331" y="-14.5" />
+      <point x="249.34722222222223" y="89.0" />
+      <point x="303.81481481481484" y="89.0" />
+      <point x="-21.0" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.transactions" target="com.sda8.financetracker.trackercore">
+      <point x="78.66666666666666" y="14.5" />
+      <point x="197.16666666666666" y="79.0" />
+      <point x="221.0138888888889" y="79.0" />
+      <point x="42.5" y="-14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.app" target="com.sda8.financetracker.datastorage">
+      <point x="-7.0" y="-14.5" />
+      <point x="231.89814814814815" y="267.0" />
+      <point x="203.58333333333334" y="267.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.app" target="com.sda8.financetracker.trackercore">
+      <point x="7.0" y="-14.5" />
+      <point x="245.89814814814815" y="267.0" />
+      <point x="310.25" y="267.0" />
+      <point x="310.25" y="188.0" />
+      <point x="249.34722222222223" y="188.0" />
+      <point x="70.83333333333334" y="14.5" />
+    </edge>
+    <edge source="com.sda8.financetracker.trackercore" target="com.sda8.financetracker.trackercore">
+      <point x="-70.83333333333333" y="14.5" />
+      <point x="107.68055555555557" y="158.0" />
+      <point x="73.51388888888889" y="158.0" />
+      <point x="73.51388888888889" y="130.75" />
+      <point x="-85.0" y="7.25" />
+    </edge>
+    <edge source="com.sda8.financetracker.app" target="com.sda8.financetracker.ui">
+      <point x="21.0" y="-14.5" />
+      <point x="259.89814814814815" y="277.0" />
+      <point x="334.81481481481484" y="277.0" />
+      <point x="334.81481481481484" y="89.0" />
+      <point x="324.81481481481484" y="89.0" />
+      <point x="0.0" y="14.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="2.6000000000000014" x="297.6153846153844" y="205.39999999999986" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
