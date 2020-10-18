@@ -4,6 +4,12 @@ import com.diogonunes.jcolor.Attribute;
 
 import static com.diogonunes.jcolor.Ansi.colorize;
 
+/**
+ * The UiText class exists to serve static print methods to all other classes. These print methods
+ * communicate all console instructions to the console user.
+ * This class is also responsible for all other UiText elements used to navigate the
+ * text based interface. All methods are void, all methods print to console.
+ */
 public class UiText {
 
     public static void welcome() {
