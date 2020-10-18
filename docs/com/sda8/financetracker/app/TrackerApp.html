@@ -156,7 +156,7 @@ extends java.lang.Object</pre>
 <td class="col-first"><code>void</code></td>
 <th class="col-second" scope="row"><code><span class="member-name-link"><a href="#deleteTransaction(java.util.List)">deleteTransaction</a></span>&#8203;(java.util.List&lt;<a href="../transactions/Transaction.html" title="class in com.sda8.financetracker.transactions">Transaction</a>&gt;&nbsp;transactionList)</code></th>
 <td class="col-last">
-<div class="block">deleteTransaction handles the removal of transaction objects from the tracker core.</div>
+<div class="block">deleteTransaction handles the removal of transaction objects from the trackerCore core.</div>
 </td>
 </tr>
 <tr class="alt-color" id="i4">
@@ -428,10 +428,10 @@ extends java.lang.Object</pre>
 <div class="block">Column generator takes a list of Transaction objects and formats it into table format. Expense objects have
  their values coloured to red. Income objects have their values coloured to green. All other string values
  in the object are spaced evenly based on the widest string value.
- The Method returns a string of evenly spaced columns.</div>
+ The Method returns a string of evenly spaced uiColumns.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
-<dd><code>transactionList</code> - List of transaction to be formatted in evenly spaced columns in strings.</dd>
+<dd><code>transactionList</code> - List of transaction to be formatted in evenly spaced uiColumns in strings.</dd>
 <dt>Returns:</dt>
 <dd>the list of objects in table String type format. Ready to be printed to console.</dd>
 </dl>
@@ -484,12 +484,12 @@ extends java.lang.Object</pre>
 <section class="detail" id="deleteTransaction(java.util.List)">
 <h3>deleteTransaction</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">deleteTransaction</span>&#8203;(<span class="parameters">java.util.List&lt;<a href="../transactions/Transaction.html" title="class in com.sda8.financetracker.transactions">Transaction</a>&gt;&nbsp;transactionList)</span></div>
-<div class="block">deleteTransaction handles the removal of transaction objects from the tracker core. Regardless of the list,
+<div class="block">deleteTransaction handles the removal of transaction objects from the trackerCore core. Regardless of the list,
  history, filter, search or sorting method used to acquire the transaction to be deleted, it will be
- deleted from the tracker core. The method takes a list of Transaction objects and gives the console
+ deleted from the trackerCore core. The method takes a list of Transaction objects and gives the console
  user a choice of which Transaction to delete.
- Upon successful deletion of an object, the balance of the tracker core will be adjusted with the transaction
- value. The tracker core will also be saved on successful deletion of a Transaction object.</div>
+ Upon successful deletion of an object, the balance of the trackerCore core will be adjusted with the transaction
+ value. The trackerCore core will also be saved on successful deletion of a Transaction object.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>transactionList</code> - list of Transaction object of which an object will be deleted.</dd>
@@ -500,7 +500,7 @@ extends java.lang.Object</pre>
 <section class="detail" id="saveAndExit()">
 <h3>saveAndExit</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="member-name">saveAndExit</span>()</div>
-<div class="block">saveAndExit, does what it says on the tin. Saves the tracker core to an external file and sets
+<div class="block">saveAndExit, does what it says on the tin. Saves the trackerCore core to an external file and sets
  the program running state to false. This will cause the app to exit its running loop and terminate.</div>
 </section>
 </li>

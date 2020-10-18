@@ -11,7 +11,7 @@ import java.util.List;
  * Once all rows have been appended, a toString method will print the rows with evenly
  * spaced columns.
  */
-public class Columns {
+public class UiColumns {
     List<List<String>> lines = new ArrayList<>();
     List<Integer> maxLengths = new ArrayList<>();
     int numColumns = -1;

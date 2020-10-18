@@ -1,6 +1,6 @@
 package com.sda8.financetracker.datastorage;
 
-import com.sda8.financetracker.trackercore.Tracker;
+import com.sda8.financetracker.trackercore.TrackerCore;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -33,13 +33,13 @@ public class Storage {
     /**
      * This methods takes a Tracker object, serializes it and streams it into a data file. If the
      * file does not exist, a new file is created. Some exception handling is done.
-     * @param trackerToSave the tracker object to be saved to a file.
+     * @param trackerCoreToSave the tracker object to be saved to a file.
      */
-    public static void saveData(Tracker trackerToSave) {
+    public static void saveData(TrackerCore trackerCoreToSave) {
         ObjectOutputStream outputStream = null;
         try {
             outputStream = new ObjectOutputStream(new FileOutputStream(savedData));
-            outputStream.writeObject(trackerToSave);
+            outputStream.writeObject(trackerCoreToSave);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -59,14 +59,14 @@ public class Storage {
      * Some exception handling takes place.
      * @return a Tracker object from a data file or a new Tracker object if file does not exist.
      */
-    public static Tracker restoreData() {
+    public static TrackerCore restoreData() {
         ObjectInputStream inputStream = null;
-        Tracker restoredTracker = null;
+        TrackerCore restoredTrackerCore = null;
         try {
             inputStream = new ObjectInputStream(new FileInputStream(savedData));
-            restoredTracker = (Tracker) inputStream.readObject();
+            restoredTrackerCore = (TrackerCore) inputStream.readObject();
         } catch (EOFException e) {
-            restoredTracker = new Tracker();
+            restoredTrackerCore = new TrackerCore();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         } finally {
@@ -78,7 +78,7 @@ public class Storage {
                 }
             }
         }
-        if (restoredTracker != null) return restoredTracker;
-        return new Tracker();
+        if (restoredTrackerCore != null) return restoredTrackerCore;
+        return new TrackerCore();
     }
 }

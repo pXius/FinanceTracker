@@ -2,11 +2,11 @@ package com.sda8.financetracker.app;
 
 import com.diogonunes.jcolor.Attribute;
 import com.sda8.financetracker.datastorage.Storage;
-import com.sda8.financetracker.trackercore.Tracker;
+import com.sda8.financetracker.trackercore.TrackerCore;
 import com.sda8.financetracker.transactions.Expense;
 import com.sda8.financetracker.transactions.Income;
 import com.sda8.financetracker.transactions.Transaction;
-import com.sda8.financetracker.ui.Columns;
+import com.sda8.financetracker.ui.UiColumns;
 import com.sda8.financetracker.ui.UiInput;
 import com.sda8.financetracker.ui.UiText;
 
@@ -23,7 +23,7 @@ import static com.diogonunes.jcolor.Ansi.colorize;
  * Fintrack app, the central control room.
  */
 public class TrackerApp {
-    private final Tracker trackerCore;
+    private final TrackerCore trackerCore;
     private final UiInput input;
     private boolean running;
 
@@ -36,7 +36,7 @@ public class TrackerApp {
      * The app running state is set to false by default.
      */
     public TrackerApp() {
-        this.trackerCore = Storage.checkFile() ? Storage.restoreData() : new Tracker();
+        this.trackerCore = Storage.checkFile() ? Storage.restoreData() : new TrackerCore();
         this.input = new UiInput();
         this.running = false;
     }
@@ -77,7 +77,7 @@ public class TrackerApp {
      */
     public void checkBalance() {
         UiText.clearScreen();
-        trackerCore.printBalance();
+        printBalance(trackerCore.getBalance());
         int selectedOption = input.numberInput(2, UiText::checkBalanceMenu);
         switch (selectedOption) {
             case 1 -> {}
@@ -252,22 +252,33 @@ public class TrackerApp {
      * @param transactionList List of transaction to be formatted in evenly spaced columns in strings.
      * @return the list of objects in table String type format. Ready to be printed to console.
      */
-    public Columns columnGenerator(List<Transaction> transactionList) {
-        Columns columns = new Columns();
-        columns.addLine("No.", "\tDate", "\tType", "\tDescription", "\t" + String.format("%14s", "Value"));
-        columns.addLine("", "", "", "", "");
+    public UiColumns columnGenerator(List<Transaction> transactionList) {
+        UiColumns uiColumns = new UiColumns();
+        uiColumns.addLine("No.", "\tDate", "\tType", "\tDescription", "\t" + String.format("%14s", "Value"));
+        uiColumns.addLine("", "", "", "", "");
         transactionList.forEach(transaction -> {
             String transactionValue = transaction instanceof Expense ?
                     colorize(String.format("%,14.2f", (transaction.getTransactionValue() * -1)), Attribute.BRIGHT_RED_TEXT()) :
                     colorize(String.format("%,14.2f", transaction.getTransactionValue()), Attribute.BRIGHT_GREEN_TEXT());
-            columns.addLine(
+            uiColumns.addLine(
                     String.format("%d", transactionList.indexOf(transaction) + 1),
                     "\t" + transaction.getDateString(),
                     "\t" + transaction.getTransactionType(),
                     "\t" + transaction.getTransactionDescription(),
                     "\t" + transactionValue);
         });
-        return columns;
+        return uiColumns;
+    }
+
+    /**
+     *  Prints the current balance field value to the console.
+     * @param balance double value to be displayed in console.
+     */
+    public void printBalance(double balance) {
+        String textBalance = balance > 0 ?
+                colorize(String.format("%.2f", balance), Attribute.BRIGHT_GREEN_TEXT()) :
+                colorize(String.format("%.2f", balance), Attribute.BRIGHT_RED_TEXT());
+        System.out.println("Your current balance is: " + textBalance + "\n");
     }
 
     /**

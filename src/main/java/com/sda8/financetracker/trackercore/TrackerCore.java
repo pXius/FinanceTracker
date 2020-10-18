@@ -3,7 +3,6 @@ package com.sda8.financetracker.trackercore;
 import com.sda8.financetracker.transactions.Expense;
 import com.sda8.financetracker.transactions.Income;
 import com.sda8.financetracker.transactions.Transaction;
-import com.sda8.financetracker.ui.UiText;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -19,7 +18,7 @@ import java.util.stream.Stream;
  * they are stored. The class is serializable and can be stored as a data object to restore program state at
  * a later stage.
  */
-public class Tracker implements Serializable {
+public class TrackerCore implements Serializable {
     private static final long serialVersionUID = 5912330287419915858L;
     private double balance;
     private final List<Expense> expenseList;
@@ -29,7 +28,7 @@ public class Tracker implements Serializable {
      * Calling the constructor creates the list data structures to store the Transaction objects, as well
      * as setting the balance to 0.
      */
-    public Tracker() {
+    public TrackerCore() {
         this.balance = 0;
         this.expenseList = new ArrayList<>();
         this.incomeList = new ArrayList<>();
@@ -50,13 +49,6 @@ public class Tracker implements Serializable {
      */
     public void adjustBalance(double adjustment) {
         this.balance += adjustment;
-    }
-
-    /**
-     * Prints the current balance field value to the console.
-     */
-    public void printBalance() {
-        UiText.balanceText(this.balance);
     }
 
     /**
