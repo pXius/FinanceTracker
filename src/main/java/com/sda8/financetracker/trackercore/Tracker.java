@@ -35,6 +35,13 @@ public class Tracker implements Serializable {
         this.incomeList = new ArrayList<>();
     }
 
+    /**
+     * Returns the balance field value of type double.
+     * @return the balance field value of type double.
+     */
+    public double getBalance() {
+        return balance;
+    }
 
     /**
      * Adjusts the balance field value with the passed argument value. Negative values are thus
