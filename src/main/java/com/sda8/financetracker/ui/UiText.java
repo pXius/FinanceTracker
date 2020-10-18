@@ -173,13 +173,6 @@ public class UiText {
         System.out.println("Enter the transaction amount: \n");
     }
 
-    public static void balanceText(double balance) {
-        String textBalance = balance > 0 ?
-                colorize(String.format("%.2f", balance), Attribute.BRIGHT_GREEN_TEXT()) :
-                colorize(String.format("%.2f", balance), Attribute.BRIGHT_RED_TEXT());
-        System.out.println("Your current balance is: " + textBalance + "\n");
-    }
-
     public static void deleteSuccessful() {
         System.out.println("Transaction Successfully Deleted!\n");
     }
