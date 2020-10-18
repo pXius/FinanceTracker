@@ -5,7 +5,6 @@ The app allows you to save income or expense items while keeping track of a bala
 Filtering, search and sorting functionality is available with custom date ranges.  
 The app will save state upon exit and reload when restarted.
 
-
 ## Installation
 Download the latest release [>>>Here<<<](https://github.com/pXius/FinanceTracker/releases/tag/1.0)
 
@@ -16,8 +15,8 @@ https://www.java.com/en/download/
 ## How to use
 run the file with java -jar filename.  
 ie.  
-`java -jar FinanceTracker.jar`
 
+`java -jar FinanceTracker.jar`
 
 ### Retrolife UI <(o;o)>
 ![enter image description here](https://i.imgur.com/tw9DSKW.png)
