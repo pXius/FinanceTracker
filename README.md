@@ -6,7 +6,7 @@ Filtering, search and sorting functionality is available with custom date ranges
 The app will save state upon exit and reload when restarted.
 
 ## Installation
-Download the latest release [>>>Here<<<](https://github.com/pXius/FinanceTracker/releases/tag/1.0)
+Download the latest release [>>>Here<<<](https://github.com/pXius/FinanceTracker/releases)
 
 ## Requirements
 Java 8 or later.  
