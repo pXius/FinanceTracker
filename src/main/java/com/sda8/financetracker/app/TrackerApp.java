@@ -18,7 +18,7 @@ import java.util.List;
 import static com.diogonunes.jcolor.Ansi.colorize;
 
 /**
- * TrackerApp is main class is the sense that it is responsible for the for all method calls, Ui navigation
+ * TrackerApp is a main class in the sense that it is responsible for all method calls, Ui navigation
  * and general implementation of all the features available in other classes. It is the heart of the
  * Fintrack app, the central control room.
  */
