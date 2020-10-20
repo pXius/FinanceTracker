@@ -13,7 +13,7 @@ Java 8 or later.
 https://www.java.com/en/download/
 
 ## How to use
-run the file with java -jar filename.  
+run the file with `java -jar /filePathTo/TheDownloaded/JarFile/FinanceTracker.jar`   
 ie.  
 
 `java -jar FinanceTracker.jar`
