@@ -36,6 +36,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Returns the balance field value of type double.
+     *
      * @return the balance field value of type double.
      */
     public double getBalance() {
@@ -45,6 +46,7 @@ public class TrackerCore implements Serializable {
     /**
      * Adjusts the balance field value with the passed argument value. Negative values are thus
      * required to lower the balance field value.
+     *
      * @param adjustment this value will be added to the balance field value.
      */
     public void adjustBalance(double adjustment) {
@@ -53,6 +55,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Adds an expense object to the expenseList datastructures.
+     *
      * @param expense This parameter requires an Object of type Expense, which extends the Transaction class.
      */
     public void addExpense(Expense expense) {
@@ -62,6 +65,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Adds an income object to the expenseList datastructures.
+     *
      * @param income This parameter requires an Object of type Income, which extends the Transaction class.
      */
     public void addIncome(Income income) {
@@ -69,10 +73,10 @@ public class TrackerCore implements Serializable {
         incomeList.add(income);
     }
 
-
     /**
      * A method to delete transactions form the respective transaction lists.
      * Detects what type of transaction is passed and removes it.
+     *
      * @param transaction the transaction to be removed.
      * @return boolean verification on successful removal.
      */
@@ -83,6 +87,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Returns a list of Expense objects stored in the Tracker object.
+     *
      * @return a list of Expense objects stored in the Tracker object.
      */
     public List<Expense> getExpenseList() {
@@ -91,6 +96,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Returns a list of Income objects stored in the Tracker object.
+     *
      * @return a list of Income objects stored in the Tracker object.
      */
     public List<Income> getIncomeList() {
@@ -100,7 +106,8 @@ public class TrackerCore implements Serializable {
     /**
      * Returns a list of Transaction objects sorted by date. Dy default the newest date will be the
      * first item in the list. By setting reversed to true, the list will be reversed.
-     * @param list A list of Transaction objects to be sorted.
+     *
+     * @param list     A list of Transaction objects to be sorted.
      * @param reversed setting to true will reverse the order of the list returned. Placing the oldest date first in the list.
      * @return a list of date sorted transaction objects.
      */
@@ -121,7 +128,8 @@ public class TrackerCore implements Serializable {
      * Returns a list of Transaction objects sorted by transaction value. By default, the lowest transaction
      * value object will be the first in the list. The list order can be reversed by setting the
      * boolean "reversed" argument to true.
-     * @param list List of Transaction objects to be sorted.
+     *
+     * @param list     List of Transaction objects to be sorted.
      * @param reversed setting to true will reverse the order of the list returned. Placing the lowest value Transaction first in the list.
      * @return a list of Transaction value sorted Objects.
      */
@@ -141,6 +149,7 @@ public class TrackerCore implements Serializable {
     /**
      * This method takes two lists of type Transaction or a type that extends transaction and combines the into a single list.
      * The lists are combined in a append fashion and the returned list will be unsorted.
+     *
      * @param list1 a Transaction list to combine with another list.
      * @param list2 a Transaction list to combine with another list.
      * @return a single Transaction list by combining the passed transaction lists.
@@ -155,9 +164,10 @@ public class TrackerCore implements Serializable {
     /**
      * Takes a list and two date parameters to filter Transactions for a specific period.
      * Returns a list of transactions filtered by date.
+     *
      * @param listToFilter the list of Transactions to be filtered to a shorter period.
-     * @param startDate the starting period of the filtered list.
-     * @param endDate ending period of the filtered list.
+     * @param startDate    the starting period of the filtered list.
+     * @param endDate      ending period of the filtered list.
      * @return a list of transactions between the two passed dates.
      */
     public List<Transaction> filterListByDate(List<? extends Transaction> listToFilter, LocalDate startDate, LocalDate endDate) {
@@ -167,15 +177,16 @@ public class TrackerCore implements Serializable {
     }
 
     /**
-     *  Takes a list of Transaction objects and filters them into a new list containing only Transaction
-     *  objects that have they keyphrase in either their description or type string fields.
+     * Takes a list of Transaction objects and filters them into a new list containing only Transaction
+     * objects that have they keyphrase in either their description or type string fields.
+     *
      * @param listToFilter the list to filter.
      * @param searchPhrase String phrase to search for.
      * @return a list of Transaction objects with the search phrase in either type or description.
      */
     public List<Transaction> filterByKeyword(List<? extends Transaction> listToFilter, String searchPhrase) {
         List<Transaction> filteredList = new ArrayList<>();
-        for (Transaction transaction : listToFilter){
+        for (Transaction transaction : listToFilter) {
             if ((transaction.getTransactionDescription().toLowerCase().contains(searchPhrase)) || (transaction.getTransactionType().toLowerCase().contains(searchPhrase)))
                 filteredList.add(transaction);
         }
@@ -184,6 +195,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Alphabetically sorts a passed list of Transactions by the their description fields.
+     *
      * @param listToSort the list of Transaction objects to be sorted.
      * @return a list of Transactions alphabetically sorted by their description string fields.
      */
@@ -196,6 +208,7 @@ public class TrackerCore implements Serializable {
 
     /**
      * Alphabetically sorts a passed list of Transactions by the their type fields.
+     *
      * @param listToSort the list of Transaction objects to be sorted.
      * @return a list of Transactions alphabetically sorted by their type string fields.
      */
