@@ -22,7 +22,7 @@ Java 8 or later.
 https://www.java.com/en/download/
 
 ## Installation
-Download the latest release [>>>Here<<<](https://github.com/pXius/FinanceTracker/releases/tag/1.0)
+**Download the latest release [>>>Here<<<](https://github.com/pXius/FinanceTracker/releases/tag/1.0)**
 
 run the file with `java -jar /filePathTo/TheDownloaded/JarFile/FinanceTracker.jar`   
 ie.  
