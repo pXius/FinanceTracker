@@ -32,7 +32,7 @@ ie.
 Navigate the console by following the text based instructions.  
 The interface will display a list of numeric options you can use to navigate to the corresponding feature.  
 Enter a numeric value via keyboard, followed by the return key to process a request.  
-The UI instructions will guide you on any other complex tasks.
+The UI instructions will guide you through any other complex tasks.
 #### Code Documentation:  
 A full set of JavaDoc/HTML style documentation is available in the `docs` folder.  
 These can be accessed by opening the `docs/index.html` file in your favourite browser after cloning the repo.   
